@@ -1,2 +1,2 @@
 # DoxiAPI.NET
-C# Libery for Doxi REST API
+C# liberty for Doxi REST API
