@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doxi.APIClient", "Doxi.APIClient\Doxi.APIClient.csproj", "{7DA8B85F-4480-4E48-8E99-BFB66BB50D9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doxi.APIClient.Tests", "Tests\Doxi.APIClient.Tests\Doxi.APIClient.Tests.csproj", "{FE6BBDE0-601E-473E-9C60-8369C0948561}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DA8B85F-4480-4E48-8E99-BFB66BB50D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA8B85F-4480-4E48-8E99-BFB66BB50D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA8B85F-4480-4E48-8E99-BFB66BB50D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA8B85F-4480-4E48-8E99-BFB66BB50D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE6BBDE0-601E-473E-9C60-8369C0948561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE6BBDE0-601E-473E-9C60-8369C0948561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE6BBDE0-601E-473E-9C60-8369C0948561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE6BBDE0-601E-473E-9C60-8369C0948561}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BE2DD9F-D9C0-45CA-88DD-BE303890194A}
+	EndGlobalSection
+EndGlobal
