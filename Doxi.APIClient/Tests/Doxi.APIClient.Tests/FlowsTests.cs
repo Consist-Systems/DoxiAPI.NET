@@ -22,8 +22,8 @@ namespace Doxi.APIClient.Tests
                 idpUrl,
                 serviceUrl,
                 configuration["CompanyName"],
-                 configuration["UserName"],
-                  configuration["Password"]);
+                configuration["UserName"],
+                configuration["Password"]);
         }
 
         [Test]
