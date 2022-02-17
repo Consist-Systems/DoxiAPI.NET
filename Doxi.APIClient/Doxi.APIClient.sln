@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doxi.APIClient", "Doxi.APIClient\Doxi.APIClient.csproj", "{7DA8B85F-4480-4E48-8E99-BFB66BB50D9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doxi.APIClient", "Doxi.APIClient\Doxi.APIClient.csproj", "{7DA8B85F-4480-4E48-8E99-BFB66BB50D9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doxi.APIClient.Tests", "Tests\Doxi.APIClient.Tests\Doxi.APIClient.Tests.csproj", "{FE6BBDE0-601E-473E-9C60-8369C0948561}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doxi.APIClient.Tests", "Tests\Doxi.APIClient.Tests\Doxi.APIClient.Tests.csproj", "{FE6BBDE0-601E-473E-9C60-8369C0948561}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

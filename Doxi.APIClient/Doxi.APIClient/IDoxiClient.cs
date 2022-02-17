@@ -1,38 +1,32 @@
-﻿using Consist.Doxi.Domain.Models;
-using Consist.Doxi.Domain.Models.ExternalAPI;
-using Consist.Doxi.Enums;
-using System;
+﻿using Doxi.Domain.Models.RequestResponce;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
 {
     public interface IDoxiClient
     {
-         Task<CreateFlowResponse> AddSignFlowByFileStream(byte[] file,ExCreateFlowRequestBase createFlowJsonRequest);
-         Task<CreateFlowResponse> CreateFlowFromFile(CreateFlowFromFileRequest fileWithSenderMail);
-        Task<CreateFlowResponse> CreateFlow(CreateFlowFromFileRequest fileWithSenderMail);
-        Task<byte[]> GetDocumentWithSigns(string signFlowId);
-        Task<byte[]> GetDocumentWithoutSigns(string signFlowId);
-        Task<GetAllFlowsResponse> GetAllFlows();
-        Task<GetFlowsStatusResponse[]> GetFlowsStatus(GetFlowsStatusRequest getFlowsStatusRequest);
+        Task<AddSignFlowResponse> AddSignFlowByFileStream(CreateFlowRequestBase createFlowJsonRequest,
+                                                                       byte[] file);
         Task SetFlowAction(SetFlowActionRequest setFlowActionRequest);
-        Task<byte[]> GetFlowAttachmentField(GetFlowAttachmentFieldRequest getFlowAttachmentFieldRequest);
-        Task<GetFlowMetadataResponse> GetFlowMetadata(string signFlowId);
+        Task SetSignatures(SetSignaturesExternalRequest setSignaturesExternalRequest);
+        Task<CreateFlowFromTemplateResponce> CreateFlowFromTemplate(CreateFlowFromTemplateRequest createFlowFromTemplateRequest);
+        GetFlowStatusResponse GetFlowStatus(string signFlowId);
+        GetFlowMetadataResponse GetFlowMetadata(string signFlowId);
+        GetFlowsStatusResponse[] GetFlowsStatus(GetFlowsStatusRequest getFlowsStatusRequest);
+        GetAllFlowsResponse GetAllFlows();
+        byte[] GetDocumentWithSigns(string signFlowId);
+        byte[] GetDocumentWithoutSigns(string signFlowId);
+        GetGroupsResponse GetGroups(string userName);
         Task<byte[]> GetFlowAttachments(string signFlowId);
-        Task<GetFlowStatusResponse> GetFlowStatus(string signFlowId);
+        Task<byte[]> GetFlowAttachmentField(string signFlowId, string signerEmail, string elementLabel);
+        GetUserTemplatesResponse GetUserTemplates(string userName);
         Task<string> AddNewTemplate(ExAddTemplateRequest exAddTemplateRequest);
         Task UpdateTemplate(ExUpdateTemplateRequest exUpdateTemplateRequest);
-        Task<CreateFlowFromTemplateResponse> CreateFlowFromTemplate(CreateFlowFromTemplateRequest createFlowFromTemplateRequest);
+        Task DeleteTemplate(string userName, string templateId);
         Task<GetExTemplateInfoResponse> GetTemplateInfo(string templateId);
-        Task DeleteUserTemplate(DeleteTemplateRequest deleteTemplateRequest);
-        Task<GetUserTemplatesResponse[]> GetUserTemplates(ParticipantKey<ParticipantKeyType> userKey);
-        Task<List<GetGroupsResponseWithUsersKeys>> GetGroups(ParticipantKey<ParticipantKeyType> userKey);
-        Task SetSignatures(ExSetSignFlowRequest exSetSignFlowRequest);
-        Task<string> CreateVRMeeting(CreateVRMeetingRequest createVRRoomRequest);
-        Task<GetVRMeetingsResponse> GetVRMeetings(GetVRMeetingsRequest getVRMeetingsRequest);
+        string Encrypt(string text);
         Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowRequest);
-        Task<IEnumerable<string>> GetFlowsByFilter(GetFlowsByFilterRequest getFlowsByFilterRequest);
+        IEnumerable<string> GetFlowsByFilter(GetFlowsByFilterRequest getFlowsByFilterRequest);
     }
 }

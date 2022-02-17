@@ -1,19 +1,12 @@
-﻿using Consist.Doxi.Domain.Models;
-using Consist.Doxi.Domain.Models.ExternalAPI;
-using Consist.Doxi.Enums;
-using Flurl;
+﻿using Flurl;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Doxi.APIClient
 {
-    public partial class DoxiClient : IDoxiClient
+    public partial class DoxiClient
     {
         private readonly string _idpUrl;
         private readonly string _serviceUrl;
@@ -21,7 +14,7 @@ namespace Doxi.APIClient
         private readonly string _userName;
         private readonly string _password;
 
-        public DoxiClient(string idpUrl,string serviceUrl,string companyName, string userName, string password)
+        public DoxiClient(string idpUrl, string serviceUrl, string companyName, string userName, string password)
         {
             _idpUrl = idpUrl;
             _serviceUrl = serviceUrl;
