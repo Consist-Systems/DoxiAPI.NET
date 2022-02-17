@@ -1,36 +1,32 @@
-//using Microsoft.Extensions.Configuration;
-//using NUnit.Framework;
-//using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using NUnit.Framework;
+using System.Threading.Tasks;
 
-//namespace Doxi.APIClient.Tests
-//{
-//    public class FlowsTests
-//    {
-//        private IDoxiClient _doxiClient;
-//        [SetUp]
-//        public void Setup()
-//        {
-//            var idpUrl = "https://logintest.doxi-sign.com";
-//            var serviceUrl = "https://test.doxi-sign.com/api";
+namespace Doxi.APIClient.Tests
+{
+    public class FlowsTests
+    {
+        private IDoxiClient _doxiClient;
+        [SetUp]
+        public void Setup()
+        {
+            var serviceUrl = "https://doxisign.consist.co.il:4433/Doxiapi";
 
-//            var builder = new ConfigurationBuilder()
-//                .AddUserSecrets<FlowsTests>();
+            var builder = new ConfigurationBuilder()
+                .AddUserSecrets<FlowsTests>();
 
-//            var configuration = builder.Build();
+            var configuration = builder.Build();
 
-//            _doxiClient = new DoxiClient(
-//                idpUrl,
-//                serviceUrl,
-//                configuration["CompanyName"],
-//                configuration["UserName"],
-//                configuration["Password"]);
-//        }
+            _doxiClient = new DoxiClient(
+                serviceUrl,
+                configuration["UserName"],
+                configuration["Password"]);
+        }
 
-//        [Test]
-//        public async Task GetAllFlows_Test()
-//        {
-//            var result = await _doxiClient.GetAllFlows();
-//            Assert.Pass();
-//        }
-//    }
-//}
+        [Test]
+        public async Task GetAllFlows_Test()
+        {
+            var result = await _doxiClient.GetAllFlows();
+        }
+    }
+}

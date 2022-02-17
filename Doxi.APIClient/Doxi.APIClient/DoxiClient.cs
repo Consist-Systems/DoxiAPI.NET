@@ -3,24 +3,29 @@ using Flurl.Http;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Net;
+using System.Net.Http;
 
 namespace Doxi.APIClient
 {
-    public partial class DoxiClient
+    public partial class DoxiClient : IDoxiClient
     {
-        private readonly string _idpUrl;
         private readonly string _serviceUrl;
-        private readonly string _companyName;
-        private readonly string _userName;
+        private readonly string _username;
         private readonly string _password;
 
-        public DoxiClient(string idpUrl, string serviceUrl, string companyName, string userName, string password)
+        public DoxiClient(string serviceUrl)
         {
-            _idpUrl = idpUrl;
             _serviceUrl = serviceUrl;
-            _companyName = companyName;
-            _userName = userName;
+            FlurlConfiguration.ConfigureDomainForDefaultCredentials(serviceUrl);
+        }
+
+        public DoxiClient(string serviceUrl,string username,string password)
+        {
+            _serviceUrl = serviceUrl;
+            _username = username;
             _password = password;
+            FlurlConfiguration.ConfigureDomainForDefaultCredentials(serviceUrl, username, password);
         }
 
         private ISerializer _serializer = new NewtonsoftJsonSerializer(new JsonSerializerSettings
@@ -29,10 +34,16 @@ namespace Doxi.APIClient
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
         });
 
-        private IFlurlRequest GetServiceBaseUrl() => new Url(_serviceUrl)
-           .AppendPathSegment("/ExternalDoxiAPI")
-           .WithHeader("X-Tenant", _companyName)
-           .ConfigureRequest(settings => settings.JsonSerializer = _serializer)
-           .WithAuthentication(_idpUrl, _companyName, _userName, _password);
+        private IFlurlRequest GetServiceBaseUrl()
+        {
+            var client = new FlurlClient()
+                .Configure(c => ((HttpClientHandler)c.HttpClientFactory.CreateMessageHandler()).Credentials
+                = new NetworkCredential(_username, _password));
+
+            return new Url(_serviceUrl)
+               .AppendPathSegment("/ExternalDoxiAPI")
+               .ConfigureRequest(settings => settings.JsonSerializer = _serializer);
+        }
+
     }
 }
