@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Doxi.APIClient.Tests
 {
@@ -56,7 +58,46 @@ namespace Doxi.APIClient.Tests
         [Test]
         public void REmoveUnused()
         {
+            var rootType = typeof(IDoxiClient);
+            var types = Assembly.GetAssembly(rootType).GetTypes();
+            var removeList = new List<string>();
 
+            var typesList = new List<Type>();
+            var oneTimeRootGurd = new List<Type>(); 
+
+            AddTypes(rootType, typesList, oneTimeRootGurd);
+            var distinctTypes = typesList.Distinct().ToArray();
+
+            foreach (var type in types)
+            {
+                if (!distinctTypes.Contains(type))
+                {
+                    removeList.Add(type.ToString());
+                }
+            }
+            var result = string.Join(Environment.NewLine,removeList);
+        }
+
+        private static void AddTypes(Type rootType, List<Type> typesList, List<Type> oneTimeRootGurd)
+        {
+            if(oneTimeRootGurd.Contains(rootType))
+                return;
+            oneTimeRootGurd.Add(rootType);
+
+            var curentTypeRefTypes = new List<Type>();
+            var methods = rootType.GetMethods();
+            curentTypeRefTypes.AddRange(methods.SelectMany(m => m.GetParameters()).Select(p => p.ParameterType));
+            curentTypeRefTypes.AddRange(methods.Select(m => m.ReturnType));
+            curentTypeRefTypes.AddRange(methods.SelectMany(m => m.GetCustomAttributes().Select(a => a.GetType())));
+
+            var properies = rootType.GetProperties();
+            curentTypeRefTypes.AddRange(properies.Select(p => p.PropertyType));
+            typesList.AddRange(curentTypeRefTypes);
+
+            foreach (var type in curentTypeRefTypes)
+            {
+                AddTypes(type, typesList, oneTimeRootGurd);
+            }
         }
     }
 }

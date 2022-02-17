@@ -24,7 +24,6 @@ namespace Doxi.Domain.Models.RequestResponce
 
         [Required]
         [MustHaveOneElement]
-        [MobileSideBySideValidation]
         public ExternalFlowElement[] FlowElements { get; set; }
 
         [DefaultValue(SendMethodType.SingleSignerOneAfterTheOther)]

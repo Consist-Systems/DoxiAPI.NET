@@ -1,4 +1,3 @@
-using Doxi.Services.General.Core.Utils;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
@@ -6,7 +5,6 @@ namespace Doxi.Domain.Models.FrontModels
 {
     public class ExUser
     {
-        [JsonConverter(typeof(EmptyToNullConverter))]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -16,7 +14,6 @@ namespace Doxi.Domain.Models.FrontModels
         [Required]
         public string LastName { get; set; }
 
-        [JsonConverter(typeof(EmptyToNullConverter))]
         [Phone]
         public string SmsPhoneNumber { get; set; }
 
