@@ -3,6 +3,7 @@ using Flurl.Http;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System;
 using System.Net;
 using System.Net.Http;
 
@@ -36,14 +37,19 @@ namespace Doxi.APIClient
 
         private IFlurlRequest GetServiceBaseUrl()
         {
-            var client = new FlurlClient()
-                .Configure(c => ((HttpClientHandler)c.HttpClientFactory.CreateMessageHandler()).Credentials
-                = new NetworkCredential(_username, _password));
-
             return new Url(_serviceUrl)
                .AppendPathSegment("/ExternalDoxiAPI")
-               .ConfigureRequest(settings => settings.JsonSerializer = _serializer);
+               .ConfigureRequest(settings => settings.JsonSerializer = _serializer)
+               .AfterCall(HandleErrors);
         }
 
+        private void HandleErrors(FlurlCall flurlCall)
+        {
+            if(flurlCall.Response.StatusCode == 400)
+            {
+                throw new ArgumentException(flurlCall.Response.GetStringAsync().Result);
+            }
+            
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Doxi.APIClient
     public partial class DoxiClient
     {
 
-        public Task<GetGroupsResponse> GetGroups(string userName)
+        public async Task<GetGroupsResponse> GetGroups(string userName)
         {
             throw new System.NotImplementedException();
         }

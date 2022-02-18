@@ -5,17 +5,17 @@ namespace Doxi.APIClient
 {
     public partial class DoxiClient
     {
-        public Task<byte[]> GetFlowAttachments(string signFlowId)
+        public async Task<byte[]> GetFlowAttachments(string signFlowId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<byte[]> GetFlowAttachmentField(string signFlowId, string signerEmail, string elementLabel)
+        public async Task<byte[]> GetFlowAttachmentField(string signFlowId, string signerEmail, string elementLabel)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowRequest)
+        public async Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowRequest)
         {
             throw new System.NotImplementedException();
         }

@@ -1,37 +1,69 @@
 ﻿using Doxi.Domain.Models.RequestResponce;
+using Flurl.Http;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
 {
     public partial class DoxiClient
     {
-        public Task<CreateFlowFromTemplateResponce> CreateFlowFromTemplate(CreateFlowFromTemplateRequest createFlowFromTemplateRequest)
+        public async Task<CreateFlowFromTemplateResponce> CreateFlowFromTemplate(CreateFlowFromTemplateRequest createFlowFromTemplateRequest)
         {
-            throw new System.NotImplementedException();
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(CreateFlowFromTemplate))
+                .PostJsonAsync(createFlowFromTemplateRequest)
+                .ReceiveJson<CreateFlowFromTemplateResponce>();
         }
-        public Task<GetUserTemplatesResponse> GetUserTemplates(string userName)
+        public async Task<GetUserTemplatesResponse> GetUserTemplates(string userName)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<string> AddNewTemplate(ExAddTemplateRequest exAddTemplateRequest)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task UpdateTemplate(ExUpdateTemplateRequest exUpdateTemplateRequest)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task DeleteTemplate(string userName, string templateId)
-        {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(userName)] = userName,
+            };
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetUserTemplates))
+                .SetQueryParams(queryParams)
+                .GetJsonAsync<GetUserTemplatesResponse>();
         }
 
-        public Task<GetExTemplateInfoResponse> GetTemplateInfo(string templateId)
+        public async Task<string> AddNewTemplate(ExAddTemplateRequest exAddTemplateRequest)
         {
-            throw new System.NotImplementedException();
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(AddNewTemplate))
+                .PostJsonAsync(exAddTemplateRequest)
+                .ReceiveString();
+        }
+
+        public async Task UpdateTemplate(ExUpdateTemplateRequest exUpdateTemplateRequest)
+        {
+             await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(UpdateTemplate))
+                .PostJsonAsync(exUpdateTemplateRequest);
+        }
+
+        public async Task DeleteTemplate(string userName, string templateId)
+        {
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(userName)] = userName,
+                [nameof(templateId)] = templateId,
+            };
+            await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(DeleteTemplate))
+                .SetQueryParams(queryParams)
+                .PostAsync();
+        }
+
+        public async Task<GetExTemplateInfoResponse> GetTemplateInfo(string templateId)
+        {
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(templateId)] = templateId,
+            };
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetTemplateInfo))
+                .SetQueryParams(queryParams)
+                .GetJsonAsync<GetExTemplateInfoResponse>();
         }
 
     }

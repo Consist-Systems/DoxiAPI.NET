@@ -17,7 +17,10 @@ namespace Doxi.APIClient
             FlurlHttp.ConfigureClient(url, cli =>
             {
                 cli.Settings.HttpClientFactory = new UseDefaultCredentialsClientFactory(username,password);
+                cli.AllowHttpStatus("400");
+
             });
         }
+
     }
 }

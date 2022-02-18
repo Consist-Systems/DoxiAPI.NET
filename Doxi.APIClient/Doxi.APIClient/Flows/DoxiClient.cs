@@ -1,40 +1,70 @@
 ﻿using Doxi.Domain.Models.RequestResponce;
 using Flurl.Http;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
 {
     public partial class DoxiClient
     {
-        public Task<AddSignFlowResponse> AddSignFlowByFileStream(CreateFlowRequestBase createFlowJsonRequest, byte[] file)
+        public async Task<AddSignFlowResponse> AddSignFlowByFileStream(CreateFlowRequestBase createFlowJsonRequest, byte[] documentFile)
         {
-            throw new System.NotImplementedException();
+            using (var stream = new MemoryStream(documentFile))
+            {
+                return await GetServiceBaseUrl()
+                    .AppendPathSegment(nameof(AddSignFlowByFileStream))
+                    .PostMultipartAsync(mp => mp
+                    .AddFile("file", stream, createFlowJsonRequest.DocumentFileName)
+                    .AddJson("createFlowJsonRequest", createFlowJsonRequest))
+                    .ReceiveJson<AddSignFlowResponse>();
+                }
         }
 
-        public Task SetFlowAction(SetFlowActionRequest setFlowActionRequest)
+        public async Task SetFlowAction(SetFlowActionRequest setFlowActionRequest)
         {
-            throw new System.NotImplementedException();
+             await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(SetFlowAction))
+                .PostJsonAsync(setFlowActionRequest);
         }
 
-        public Task SetSignatures(SetSignaturesExternalRequest setSignaturesExternalRequest)
+        public async Task SetSignatures(SetSignaturesExternalRequest setSignaturesExternalRequest)
         {
-            throw new System.NotImplementedException();
+             await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(SetSignatures))
+                .PostJsonAsync(setSignaturesExternalRequest);
         }
 
-        public Task<GetFlowStatusResponse> GetFlowStatus(string signFlowId)
+        public async Task<GetFlowStatusResponse> GetFlowStatus(string signFlowId)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(signFlowId)] = signFlowId,
+            };
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowStatus))
+                .SetQueryParams(queryParams)
+                .GetJsonAsync<GetFlowStatusResponse>();
         }
 
-        public Task<GetFlowMetadataResponse> GetFlowMetadata(string signFlowId)
+        public async Task<GetFlowMetadataResponse> GetFlowMetadata(string signFlowId)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(signFlowId)] = signFlowId,
+            };
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowMetadata))
+                .SetQueryParams(queryParams)
+                .GetJsonAsync<GetFlowMetadataResponse>();
         }
 
-        public Task<GetFlowsStatusResponse[]> GetFlowsStatus(GetFlowsStatusRequest getFlowsStatusRequest)
+        public async Task<GetFlowsStatusResponse[]> GetFlowsStatus(GetFlowsStatusRequest getFlowsStatusRequest)
         {
-            throw new System.NotImplementedException();
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowsStatus))
+                .PostJsonAsync(getFlowsStatusRequest)
+                .ReceiveJson<GetFlowsStatusResponse[]>();
         }
 
         public async Task<GetAllFlowsResponse> GetAllFlows()
@@ -44,19 +74,22 @@ namespace Doxi.APIClient
                 .GetJsonAsync<GetAllFlowsResponse>();
         }
 
-        public Task<byte[]> GetDocumentWithSigns(string signFlowId)
+        public async Task<byte[]> GetDocumentWithSigns(string signFlowId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<byte[]> GetDocumentWithoutSigns(string signFlowId)
+        public async Task<byte[]> GetDocumentWithoutSigns(string signFlowId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<string>> GetFlowsByFilter(GetFlowsByFilterRequest getFlowsByFilterRequest)
+        public async Task<IEnumerable<string>> GetFlowsByFilter(GetFlowsByFilterRequest getFlowsByFilterRequest)
         {
-            throw new System.NotImplementedException();
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowsByFilter))
+                .PostJsonAsync(getFlowsByFilterRequest)
+                .ReceiveJson<IEnumerable<string>>();
         }
     }
 }
