@@ -5,29 +5,29 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace Doxi.APIClient
 {
     public class CreateFlowRequestBase
     {
 
-        [Required]
+        
         public string DocumentFileName { get; set; }
 
-        [Required]
+        
         public string SenderUserName { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        
+        
         public string Description { get; set; }
 
-        [Required]
-        [MustHaveOneElement]
+        
+        
         public ExternalFlowElement[] FlowElements { get; set; }
 
         [DefaultValue(SendMethodType.SingleSignerOneAfterTheOther)]
-        [EnumDataType(typeof(SendMethodType), ErrorMessage = "Invalid SendMethodType")]
+        
         public SendMethodType SendMethodType { get; set; }
 
         public ExUser[] Recipients { get; set; }
@@ -43,8 +43,8 @@ namespace Doxi.APIClient
 
         public KeyValuePair<string, string>[] CustomFields { get; set; }
 
-        [Required]
-        [MustHaveOneElement]
+        
+        
         public ExUser[] Users { get; set; }
         public string PackageId { get; set; }
         public string PackageName { get; set; }

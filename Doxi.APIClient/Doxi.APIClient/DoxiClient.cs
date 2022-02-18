@@ -43,6 +43,7 @@ namespace Doxi.APIClient
                .AfterCall(HandleErrors);
         }
 
+
         private void HandleErrors(FlurlCall flurlCall)
         {
             if(flurlCall.Response.StatusCode == 400)

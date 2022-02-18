@@ -1,16 +1,16 @@
 ﻿
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace Doxi.APIClient
 {
     public class CreateFlowFromTemplateRequest
     {
-        [Required]
+        
         public string TemplateId { get; set; }
-        [Required]
+        
         public string Description { get; set; }
-        [Required]
+        
         public string SenderUserName { get; set; }
         public string PreliminaryText { get; set; }
         public KeyValuePair<string, string>[] CustomFields { get; set; }

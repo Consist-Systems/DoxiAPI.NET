@@ -7,7 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Flurl.Http.Signed" Version="3.2.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

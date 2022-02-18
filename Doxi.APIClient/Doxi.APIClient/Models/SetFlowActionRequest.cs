@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
 
 namespace Doxi.APIClient
 {
@@ -11,10 +11,10 @@ namespace Doxi.APIClient
         ///  SendReminder=2
         ///  ArchiveFlow=3
         /// </summary>
-        [Required]
+        
         public FlowExternalAction FlowAction { get; set; }
 
-        [Required]
+        
         public string SignFlowId { get; set; }
 
         /// <summary>

@@ -1,20 +1,20 @@
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace Doxi.APIClient
 {
     public class ExUser
     {
-        [EmailAddress]
+        
         public string Email { get; set; }
 
-        [Required]
+        
         public string FirstName { get; set; }
 
-        [Required]
+        
         public string LastName { get; set; }
 
-        [Phone]
+        
         public string SmsPhoneNumber { get; set; }
 
         /// <summary>

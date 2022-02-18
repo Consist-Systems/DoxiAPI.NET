@@ -1,12 +1,12 @@
 ﻿
 using System;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace Doxi.APIClient
 {
     public class ExUpdateTemplateRequest
     {
-        [Required]
+        
         public string TemplateId { get; set; }
 
         [Obsolete]
@@ -18,7 +18,7 @@ namespace Doxi.APIClient
         //public string PackageId { get; set; }
         //public string PackageName { get; set; }
 
-        [Required]
+        
         public string TemplateName { get; set; }
         public ExternalTemplatFlowElement[] FlowElements { get; set; }
         public ExTemplateUser[] Users { get; set; }
