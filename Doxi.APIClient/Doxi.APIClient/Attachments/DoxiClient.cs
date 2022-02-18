@@ -1,4 +1,4 @@
-﻿using Doxi.Domain.Models.RequestResponce;
+﻿
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient

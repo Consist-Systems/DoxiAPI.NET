@@ -1,8 +1,8 @@
-﻿using Doxi.Domain.Models.FrontModels;
+﻿
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Doxi.Domain.Models.RequestResponce
+namespace Doxi.APIClient
 {
     public class CreateFlowFromTemplateRequest
     {

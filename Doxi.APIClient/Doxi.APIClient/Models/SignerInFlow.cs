@@ -1,7 +1,7 @@
-using Doxi.Service.Interfaces.Enums;
+
 using System;
 
-namespace Doxi.Domain.Models.FrontModels
+namespace Doxi.APIClient
 {
     public class SignerInFlow
     {

@@ -3,8 +3,8 @@ using NUnit.Framework;
 using System.Threading.Tasks;
 using System.Linq;
 using System.IO;
-using Doxi.Domain.Models.RequestResponce;
-using Doxi.Domain.Models.FrontModels;
+
+
 
 namespace Doxi.APIClient.Tests
 {

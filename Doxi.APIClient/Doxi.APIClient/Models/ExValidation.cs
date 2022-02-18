@@ -1,6 +1,6 @@
-﻿using Doxi.Service.Interfaces.Enums;
+﻿
 
-namespace Doxi.Domain.Models
+namespace Doxi.APIClient
 {
     public class ExValidation
     {

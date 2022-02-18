@@ -1,6 +1,6 @@
 
 
-namespace Doxi.Domain.Models.FrontModels
+namespace Doxi.APIClient
 {
     public class ExternalFlowElement : BaseExternalFlowElement
     {

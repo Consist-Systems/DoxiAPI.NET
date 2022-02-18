@@ -1,13 +1,13 @@
-using Doxi.Domain.Attributes;
-using Doxi.Domain.Models.FrontModels;
-using Doxi.Service.Interfaces.Enums;
+
+
+
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Doxi.Domain.Models.RequestResponce
+namespace Doxi.APIClient
 {
     public class CreateFlowRequestBase
     {

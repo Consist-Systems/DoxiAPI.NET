@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Doxi.Domain.Models
+namespace Doxi.APIClient
 {
     public class ExDropDownField
     {

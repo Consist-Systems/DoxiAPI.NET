@@ -1,7 +1,7 @@
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
-namespace Doxi.Domain.Attributes
+namespace Doxi.APIClient
 {
     public class MustHaveOneElementAttribute : ValidationAttribute
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Doxi.Domain.Models
+namespace Doxi.APIClient
 {
     public class ExDateTimeValidation
     {

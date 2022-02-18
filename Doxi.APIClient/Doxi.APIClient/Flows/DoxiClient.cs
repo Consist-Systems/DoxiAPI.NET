@@ -1,4 +1,4 @@
-﻿using Doxi.Domain.Models.RequestResponce;
+﻿
 using Flurl.Http;
 using System.Collections.Generic;
 using System.IO;

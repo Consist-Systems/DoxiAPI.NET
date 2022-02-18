@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Doxi.Domain.Models.RequestResponce
+namespace Doxi.APIClient
 {
     public class SetFlowActionRequest
     {

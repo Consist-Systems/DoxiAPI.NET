@@ -1,4 +1,4 @@
-namespace Doxi.Domain.Models.RequestResponce
+namespace Doxi.APIClient
 {
     public class GetGroupsResponse
     {

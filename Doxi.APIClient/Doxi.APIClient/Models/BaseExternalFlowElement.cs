@@ -1,10 +1,10 @@
-﻿using Doxi.Service.Interfaces.Enums;
+﻿
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Doxi.Domain.Models.FrontModels
+namespace Doxi.APIClient
 {
     public abstract class BaseExternalFlowElement
     {

@@ -1,4 +1,4 @@
-﻿namespace Doxi.Service.Interfaces.Enums
+﻿namespace Doxi.APIClient
 {
     public enum HorizontalAlignment
     {

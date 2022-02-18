@@ -1,4 +1,4 @@
-﻿namespace Doxi.Domain.Models.FrontModels
+﻿namespace Doxi.APIClient
 {
     public class ExTemplateUser
     {

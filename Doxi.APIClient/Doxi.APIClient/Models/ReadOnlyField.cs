@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Doxi.Domain.Models.FrontModels
+namespace Doxi.APIClient
 {
     public class ReadOnlyField
     {

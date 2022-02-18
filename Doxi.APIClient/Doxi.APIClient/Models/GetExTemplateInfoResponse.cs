@@ -1,8 +1,8 @@
-﻿using Doxi.Domain.Models.FrontModels;
-using Doxi.Service.Interfaces.Enums;
+﻿
+
 using System;
 
-namespace Doxi.Domain.Models.RequestResponce
+namespace Doxi.APIClient
 {
     public class GetExTemplateInfoResponse
     {

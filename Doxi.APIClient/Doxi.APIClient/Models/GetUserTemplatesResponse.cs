@@ -1,7 +1,7 @@
-﻿using Doxi.Domain.Models.FrontModels;
+﻿
 using System.Collections.Generic;
 
-namespace Doxi.Domain.Models.RequestResponce
+namespace Doxi.APIClient
 {
     public class GetUserTemplatesResponse
     {

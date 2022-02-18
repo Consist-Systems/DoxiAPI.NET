@@ -1,9 +1,9 @@
-﻿using Doxi.Domain.Models.FrontModels;
-using Doxi.Service.Interfaces.Enums;
+﻿
+
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Doxi.Domain.Models.RequestResponce
+namespace Doxi.APIClient
 {
     public class SetSignaturesExternalRequest
     {
