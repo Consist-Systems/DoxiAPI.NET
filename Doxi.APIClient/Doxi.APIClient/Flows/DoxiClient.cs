@@ -76,12 +76,28 @@ namespace Doxi.APIClient
 
         public async Task<byte[]> GetDocumentWithSigns(string signFlowId)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(signFlowId)] = signFlowId,
+            };
+            var result = await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetDocumentWithSigns))
+                .SetQueryParams(queryParams)
+                .GetStreamAsync();
+            return result.ToBytes();
         }
 
         public async Task<byte[]> GetDocumentWithoutSigns(string signFlowId)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(signFlowId)] = signFlowId,
+            };
+            var result = await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetDocumentWithoutSigns))
+                .SetQueryParams(queryParams)
+                .GetStreamAsync();
+            return result.ToBytes();
         }
 
         public async Task<IEnumerable<string>> GetFlowsByFilter(GetFlowsByFilterRequest getFlowsByFilterRequest)

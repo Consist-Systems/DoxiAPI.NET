@@ -1,4 +1,6 @@
 ﻿
+using Flurl.Http;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
@@ -8,7 +10,14 @@ namespace Doxi.APIClient
 
         public async Task<GetGroupsResponse> GetGroups(string userName)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(userName)] = userName,
+            };
+             return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetGroups))
+                .SetQueryParams(queryParams)
+                .GetJsonAsync<GetGroupsResponse>();
         }
     }
 }
