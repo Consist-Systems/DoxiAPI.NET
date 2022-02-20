@@ -10,9 +10,7 @@ namespace Doxi.APIClient
 {
     public interface IDoxiClient
     {
-         Task<CreateFlowResponse> AddSignFlowByFileStream(byte[] file,ExCreateFlowRequestBase createFlowJsonRequest);
-         Task<CreateFlowResponse> CreateFlowFromFile(CreateFlowFromFileRequest fileWithSenderMail);
-        Task<CreateFlowResponse> CreateFlow(CreateFlowFromFileRequest fileWithSenderMail);
+        Task<CreateFlowResponse> AddSignFlowByFileStream(ExCreateFlowRequestBase createFlowJsonRequest, byte[] documentFile);
         Task<byte[]> GetDocumentWithSigns(string signFlowId);
         Task<byte[]> GetDocumentWithoutSigns(string signFlowId);
         Task<GetAllFlowsResponse> GetAllFlows();

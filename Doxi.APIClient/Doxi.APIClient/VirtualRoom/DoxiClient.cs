@@ -5,12 +5,12 @@ namespace Doxi.APIClient
 {
     public partial class DoxiClient 
     {
-        public Task<string> CreateVRMeeting(CreateVRMeetingRequest createVRRoomRequest)
+        public async Task<string> CreateVRMeeting(CreateVRMeetingRequest createVRRoomRequest)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<GetVRMeetingsResponse> GetVRMeetings(GetVRMeetingsRequest getVRMeetingsRequest)
+        public async Task<GetVRMeetingsResponse> GetVRMeetings(GetVRMeetingsRequest getVRMeetingsRequest)
         {
             throw new System.NotImplementedException();
         }

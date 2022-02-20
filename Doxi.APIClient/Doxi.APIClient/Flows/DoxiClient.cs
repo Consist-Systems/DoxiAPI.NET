@@ -2,6 +2,7 @@
 using Consist.Doxi.Domain.Models.ExternalAPI;
 using Flurl.Http;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
@@ -16,59 +17,99 @@ namespace Doxi.APIClient
                 .ConfigureAwait(false);
         }
 
-        public Task<CreateFlowResponse> AddSignFlowByFileStream(byte[] file, ExCreateFlowRequestBase createFlowJsonRequest)
+        public async Task<CreateFlowResponse> AddSignFlowByFileStream(ExCreateFlowRequestBase createFlowJsonRequest, byte[] documentFile)
         {
-            throw new System.NotImplementedException();
+            using (var stream = new MemoryStream(documentFile))
+            {
+                return await GetServiceBaseUrl()
+                    .AppendPathSegment(nameof(AddSignFlowByFileStream))
+                    .PostMultipartAsync(mp => mp
+                    .AddFile("file", stream, createFlowJsonRequest.DocumentFileName)
+                    .AddJson("createFlowJsonRequest", createFlowJsonRequest))
+                    .ReceiveJson<CreateFlowResponse>();
+            }
         }
 
-        public Task<CreateFlowResponse> CreateFlow(CreateFlowFromFileRequest fileWithSenderMail)
+
+
+        public async Task<byte[]> GetDocumentWithSigns(string signFlowId)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(signFlowId)] = signFlowId,
+            };
+            var result = await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetDocumentWithSigns))
+                .SetQueryParams(queryParams)
+                .GetStreamAsync();
+            return result.ToBytes();
         }
 
-        public Task<CreateFlowResponse> CreateFlowFromFile(CreateFlowFromFileRequest fileWithSenderMail)
+        public async Task<byte[]> GetDocumentWithoutSigns(string signFlowId)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(signFlowId)] = signFlowId,
+            };
+            var result = await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetDocumentWithoutSigns))
+                .SetQueryParams(queryParams)
+                .GetStreamAsync();
+            return result.ToBytes();
         }
 
-        public Task<byte[]> GetDocumentWithoutSigns(string signFlowId)
+        public async Task<GetFlowMetadataResponse> GetFlowMetadata(string signFlowId)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(signFlowId)] = signFlowId,
+            };
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowMetadata))
+                .SetQueryParams(queryParams)
+                .GetJsonAsync<GetFlowMetadataResponse>();
         }
 
-        public Task<byte[]> GetDocumentWithSigns(string signFlowId)
+        public async Task<IEnumerable<string>> GetFlowsByFilter(GetFlowsByFilterRequest getFlowsByFilterRequest)
         {
-            throw new System.NotImplementedException();
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowsByFilter))
+                .PostJsonAsync(getFlowsByFilterRequest)
+                .ReceiveJson<IEnumerable<string>>();
         }
 
-        public Task<GetFlowMetadataResponse> GetFlowMetadata(string signFlowId)
+        public async Task<GetFlowsStatusResponse[]> GetFlowsStatus(GetFlowsStatusRequest getFlowsStatusRequest)
         {
-            throw new System.NotImplementedException();
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowsStatus))
+                .PostJsonAsync(getFlowsStatusRequest)
+                .ReceiveJson<GetFlowsStatusResponse[]>();
         }
 
-        public Task<IEnumerable<string>> GetFlowsByFilter(GetFlowsByFilterRequest getFlowsByFilterRequest)
+        public async Task<GetFlowStatusResponse> GetFlowStatus(string signFlowId)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(signFlowId)] = signFlowId,
+            };
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowStatus))
+                .SetQueryParams(queryParams)
+                .GetJsonAsync<GetFlowStatusResponse>();
         }
 
-        public Task<GetFlowsStatusResponse[]> GetFlowsStatus(GetFlowsStatusRequest getFlowsStatusRequest)
+        public async Task SetFlowAction(SetFlowActionRequest setFlowActionRequest)
         {
-            throw new System.NotImplementedException();
+            await GetServiceBaseUrl()
+               .AppendPathSegment(nameof(SetFlowAction))
+               .PostJsonAsync(setFlowActionRequest);
         }
 
-        public Task<GetFlowStatusResponse> GetFlowStatus(string signFlowId)
+        public async Task SetSignatures(ExSetSignFlowRequest exSetSignFlowRequest)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task SetFlowAction(SetFlowActionRequest setFlowActionRequest)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task SetSignatures(ExSetSignFlowRequest exSetSignFlowRequest)
-        {
-            throw new System.NotImplementedException();
+            await GetServiceBaseUrl()
+               .AppendPathSegment(nameof(SetSignatures))
+               .PostJsonAsync(exSetSignFlowRequest);
         }
     }
 }

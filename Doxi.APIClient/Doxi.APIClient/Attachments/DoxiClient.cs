@@ -1,24 +1,41 @@
 ﻿using Consist.Doxi.Domain.Models;
 using Consist.Doxi.Domain.Models.ExternalAPI;
+using Flurl.Http;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
 {
     public partial class DoxiClient
     {
-        public Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowRequest)
+        public async Task<byte[]> GetFlowAttachments(string signFlowId)
         {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(signFlowId)] = signFlowId,
+            };
+            var result = await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowAttachments))
+                .SetQueryParams(queryParams)
+                .GetStreamAsync();
+            return result.ToBytes();
         }
 
-        public Task<byte[]> GetFlowAttachmentField(GetFlowAttachmentFieldRequest getFlowAttachmentFieldRequest)
+        public async Task<byte[]> GetFlowAttachmentField(GetFlowAttachmentFieldRequest getFlowAttachmentFieldRequest)
         {
-            throw new System.NotImplementedException();
+            var result = await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetFlowAttachmentField))
+                .PostJsonAsync(getFlowAttachmentFieldRequest)
+                .ReceiveStream();
+            return result.ToBytes();
         }
 
-        public Task<byte[]> GetFlowAttachments(string signFlowId)
+        public async Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowRequest)
         {
-            throw new System.NotImplementedException();
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(AddAttachmentToFlow))
+                .PostJsonAsync(addAttachmentToFlowRequest)
+                .ReceiveString();
         }
     }
 }

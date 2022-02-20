@@ -1,39 +1,60 @@
 ﻿using Consist.Doxi.Domain.Models;
 using Consist.Doxi.Enums;
+using Flurl.Http;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
 {
     public partial class DoxiClient 
     {
-        public Task<CreateFlowFromTemplateResponse> CreateFlowFromTemplate(CreateFlowFromTemplateRequest createFlowFromTemplateRequest)
+        public async Task<CreateFlowFromTemplateResponse> CreateFlowFromTemplate(CreateFlowFromTemplateRequest createFlowFromTemplateRequest)
         {
-            throw new System.NotImplementedException();
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(CreateFlowFromTemplate))
+                .PostJsonAsync(createFlowFromTemplateRequest)
+                .ReceiveJson<CreateFlowFromTemplateResponse>();
+        }
+        public async Task<GetUserTemplatesResponse[]> GetUserTemplates(ParticipantKey<ParticipantKeyType> userKey)
+        {
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetUserTemplates))
+                .PostJsonAsync(userKey)
+                .ReceiveJson<GetUserTemplatesResponse[]>();
         }
 
-
-        public Task<string> AddNewTemplate(ExAddTemplateRequest exAddTemplateRequest)
+        public async Task<string> AddNewTemplate(ExAddTemplateRequest exAddTemplateRequest)
         {
-            throw new System.NotImplementedException();
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(AddNewTemplate))
+                .PostJsonAsync(exAddTemplateRequest)
+                .ReceiveString();
         }
 
-        public Task DeleteUserTemplate(DeleteTemplateRequest deleteTemplateRequest)
+        public async Task UpdateTemplate(ExUpdateTemplateRequest exUpdateTemplateRequest)
         {
-            throw new System.NotImplementedException();
+            await GetServiceBaseUrl()
+               .AppendPathSegment(nameof(UpdateTemplate))
+               .PostJsonAsync(exUpdateTemplateRequest);
         }
 
-        public Task<GetExTemplateInfoResponse> GetTemplateInfo(string templateId)
+        public async Task DeleteUserTemplate(DeleteTemplateRequest deleteTemplateRequest)
         {
-            throw new System.NotImplementedException();
+            await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(DeleteUserTemplate))
+                .PostJsonAsync(deleteTemplateRequest);
         }
 
-        public Task<GetUserTemplatesResponse[]> GetUserTemplates(ParticipantKey<ParticipantKeyType> userKey)
+        public async Task<GetExTemplateInfoResponse> GetTemplateInfo(string templateId)
         {
-            throw new System.NotImplementedException();
-        }
-        public Task UpdateTemplate(ExUpdateTemplateRequest exUpdateTemplateRequest)
-        {
-            throw new System.NotImplementedException();
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(templateId)] = templateId,
+            };
+            return await GetServiceBaseUrl()
+                .AppendPathSegment(nameof(GetTemplateInfo))
+                .SetQueryParams(queryParams)
+                .GetJsonAsync<GetExTemplateInfoResponse>();
         }
     }
 }

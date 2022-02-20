@@ -40,6 +40,18 @@ namespace Doxi.APIClient
            .AppendPathSegment("/ExternalDoxiAPI")
            .WithHeader("X-Tenant", _companyName)
            .ConfigureRequest(settings => settings.JsonSerializer = _serializer)
+           .AfterCall(HandleErrors)
            .WithAuthentication(_idpUrl, _companyName, _userName, _password);
+
+        private void HandleErrors(FlurlCall flurlCall)
+        {
+            if (flurlCall?.Response?.StatusCode != 200)
+            {
+                if (flurlCall.Response.StatusCode == 400)
+                    throw new ArgumentException(flurlCall.Response.GetStringAsync().Result);
+                else
+                    throw new Exception(flurlCall.Response.GetStringAsync().Result);
+            }
+        }
     }
 }
