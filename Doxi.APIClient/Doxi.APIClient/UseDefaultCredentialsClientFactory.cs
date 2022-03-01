@@ -8,27 +8,33 @@ namespace Doxi.APIClient
     {
         private readonly string _username;
         private readonly string _password;
+        private bool _acceptAnyServerCertificateValidator;
 
-        public UseDefaultCredentialsClientFactory()
+        public UseDefaultCredentialsClientFactory(bool acceptAnyServerCertificateValidator)
         {
+            _acceptAnyServerCertificateValidator = acceptAnyServerCertificateValidator;
         }
         
-        public UseDefaultCredentialsClientFactory(string username, string password)
+        public UseDefaultCredentialsClientFactory(string username, string password, bool acceptAnyServerCertificateValidator)
         {
             _username = username;
             _password = password;
+            _acceptAnyServerCertificateValidator = acceptAnyServerCertificateValidator;
         }
 
         public override HttpMessageHandler CreateMessageHandler()
         {
-            return new HttpClientHandler { UseDefaultCredentials = true };
+            var httpClientHandler = new HttpClientHandler { 
+                UseDefaultCredentials = true,
+            };
+            if (!string.IsNullOrWhiteSpace(_username))
+                httpClientHandler.Credentials = new NetworkCredential(_username, _password);
+
+            if (_acceptAnyServerCertificateValidator)
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+
+            return httpClientHandler;
         }
 
-        public override HttpClient CreateHttpClient(HttpMessageHandler handler)
-        {
-            if(!string.IsNullOrWhiteSpace(_username))
-                ((HttpClientHandler)handler).Credentials = new NetworkCredential(_username, _password);
-            return base.CreateHttpClient(handler);
-        }
     }
 }

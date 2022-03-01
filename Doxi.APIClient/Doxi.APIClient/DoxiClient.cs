@@ -15,18 +15,16 @@ namespace Doxi.APIClient
         private readonly string _username;
         private readonly string _password;
 
-        public DoxiClient(string serviceUrl)
+        public DoxiClient(string serviceUrl, bool acceptAnyServerCertificateValidator = false)
         {
             _serviceUrl = serviceUrl;
-            FlurlConfiguration.ConfigureDomainForDefaultCredentials(serviceUrl);
+            FlurlConfiguration.ConfigureDomainForDefaultCredentials(serviceUrl, acceptAnyServerCertificateValidator);
         }
 
-        public DoxiClient(string serviceUrl,string username,string password)
+        public DoxiClient(string serviceUrl,string username,string password,bool acceptAnyServerCertificateValidator=false)
         {
             _serviceUrl = serviceUrl;
-            _username = username;
-            _password = password;
-            FlurlConfiguration.ConfigureDomainForDefaultCredentials(serviceUrl, username, password);
+            FlurlConfiguration.ConfigureDomainForDefaultCredentials(serviceUrl, username, password, acceptAnyServerCertificateValidator);
         }
 
         private ISerializer _serializer = new NewtonsoftJsonSerializer(new JsonSerializerSettings
