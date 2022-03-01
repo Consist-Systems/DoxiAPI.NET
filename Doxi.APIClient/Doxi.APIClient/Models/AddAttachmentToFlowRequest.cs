@@ -7,12 +7,9 @@
         /// </summary>
         public string SignFlowId { get; set; }
 
-        /// <summary>
-        /// file stream to add to flow
-        /// </summary>
-        public byte[] FileByte { get; set; }
-
         public string FileName { get; set; }
+
+        public byte[] FileByte { get; set; }
 
         /// <summary>
         /// User that add the file to the flow

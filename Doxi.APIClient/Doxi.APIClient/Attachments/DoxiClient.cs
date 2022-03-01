@@ -1,6 +1,7 @@
 ﻿
 using Flurl.Http;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
@@ -37,9 +38,15 @@ namespace Doxi.APIClient
 
         public async Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowRequest)
         {
+            dynamic addAttachmentToFlowData = new
+            {
+                SignFlowId = addAttachmentToFlowRequest.SignFlowId,
+                UserMail = addAttachmentToFlowRequest.UserMail,
+            };
             return await GetServiceBaseUrl()
                 .AppendPathSegment(nameof(AddAttachmentToFlow))
-                .PostJsonAsync(addAttachmentToFlowRequest)
+                .PostMultipartAsync(mp => mp.AddFile("file", new MemoryStream(addAttachmentToFlowRequest.FileByte), addAttachmentToFlowRequest.FileName)
+                                            .AddJson("createFlowJsonRequest", addAttachmentToFlowData))
                 .ReceiveString();
         }
     }

@@ -14,11 +14,10 @@ namespace Doxi.APIClient
             {
                 return await GetServiceBaseUrl()
                     .AppendPathSegment(nameof(AddSignFlowByFileStream))
-                    .PostMultipartAsync(mp => mp
-                    .AddFile("file", stream, createFlowJsonRequest.DocumentFileName)
-                    .AddJson("createFlowJsonRequest", createFlowJsonRequest))
+                    .PostMultipartAsync(mp => mp.AddFile("file", stream, createFlowJsonRequest.DocumentFileName)
+                                            .AddJson("createFlowJsonRequest", createFlowJsonRequest))
                     .ReceiveJson<AddSignFlowResponse>();
-                }
+            }
         }
 
         public async Task SetFlowAction(SetFlowActionRequest setFlowActionRequest)
