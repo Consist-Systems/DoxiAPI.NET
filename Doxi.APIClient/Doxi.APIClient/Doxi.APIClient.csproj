@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	<PackageVersion>3.8.2-beta</PackageVersion>
+	<PackageVersion>3.8.2</PackageVersion>
     <AssemblyVersion>3.8.2</AssemblyVersion>
     <FileVersion>3.8.2</FileVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

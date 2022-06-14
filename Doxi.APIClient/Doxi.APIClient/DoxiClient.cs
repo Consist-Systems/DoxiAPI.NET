@@ -4,8 +4,6 @@ using Flurl.Http.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
-using System.Net;
-using System.Net.Http;
 
 namespace Doxi.APIClient
 {
