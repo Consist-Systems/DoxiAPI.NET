@@ -9,20 +9,22 @@ namespace Doxi.APIClient
 {
     public partial class DoxiClient
     {
+        private const string FLOW_BASE = "flow";
+
         public async Task<GetAllFlowsResponse> GetAllFlows()
         {
             return await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(GetAllFlows))
+                .AppendPathSegment(FLOW_BASE)
                 .GetJsonAsync<GetAllFlowsResponse>()
                 .ConfigureAwait(false);
         }
 
-        public async Task<CreateFlowResponse> AddSignFlowByFileStream(ExCreateFlowRequestBase createFlowJsonRequest, byte[] documentFile)
+        public async Task<CreateFlowResponse> AddSignFlow(ExCreateFlowRequestBase createFlowJsonRequest, byte[] documentFile)
         {
             using (var stream = new MemoryStream(documentFile))
             {
                 return await GetServiceBaseUrl()
-                    .AppendPathSegment(nameof(AddSignFlowByFileStream))
+                    .AppendPathSegment(FLOW_BASE)
                     .PostMultipartAsync(mp => mp
                     .AddFile("file", stream, createFlowJsonRequest.DocumentFileName)
                     .AddJson("createFlowJsonRequest", createFlowJsonRequest))
@@ -32,48 +34,39 @@ namespace Doxi.APIClient
 
 
 
-        public async Task<byte[]> GetDocumentWithSigns(string signFlowId)
+        public async Task<byte[]> GetDocument(string signFlowId, bool withSigns = true)
         {
             var queryParams = new Dictionary<string, object>
             {
                 [nameof(signFlowId)] = signFlowId,
             };
             var result = await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(GetDocumentWithSigns))
+                .AppendPathSegment(FLOW_BASE)
+                .AppendPathSegment($"{signFlowId}/Document/{withSigns}")
                 .SetQueryParams(queryParams)
                 .GetStreamAsync();
             return result.ToBytes();
         }
 
-        public async Task<byte[]> GetDocumentWithoutSigns(string signFlowId)
-        {
-            var queryParams = new Dictionary<string, object>
-            {
-                [nameof(signFlowId)] = signFlowId,
-            };
-            var result = await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(GetDocumentWithoutSigns))
-                .SetQueryParams(queryParams)
-                .GetStreamAsync();
-            return result.ToBytes();
-        }
 
-        public async Task<GetFlowMetadataResponse> GetFlowMetadata(string signFlowId)
+        public async Task<GetFlowMetadataResponse> GetFlow(string signFlowId)
         {
             var queryParams = new Dictionary<string, object>
             {
                 [nameof(signFlowId)] = signFlowId,
             };
             return await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(GetFlowMetadata))
+                .AppendPathSegment(FLOW_BASE)
+                .AppendPathSegment(signFlowId)
                 .SetQueryParams(queryParams)
                 .GetJsonAsync<GetFlowMetadataResponse>();
         }
 
-        public async Task<IEnumerable<string>> GetFlowsByFilter(GetFlowsByFilterRequest getFlowsByFilterRequest)
+        public async Task<IEnumerable<string>> SearchFlow(GetFlowsByFilterRequest getFlowsByFilterRequest)
         {
             return await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(GetFlowsByFilter))
+                .AppendPathSegment(FLOW_BASE)
+                .AppendPathSegment("search")
                 .PostJsonAsync(getFlowsByFilterRequest)
                 .ReceiveJson<IEnumerable<string>>();
         }
@@ -81,7 +74,8 @@ namespace Doxi.APIClient
         public async Task<GetFlowsStatusResponse[]> GetFlowsStatus(GetFlowsStatusRequest getFlowsStatusRequest)
         {
             return await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(GetFlowsStatus))
+                .AppendPathSegment(FLOW_BASE)
+                .AppendPathSegment("status")
                 .PostJsonAsync(getFlowsStatusRequest)
                 .ReceiveJson<GetFlowsStatusResponse[]>();
         }
@@ -93,22 +87,25 @@ namespace Doxi.APIClient
                 [nameof(signFlowId)] = signFlowId,
             };
             return await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(GetFlowStatus))
+                .AppendPathSegment(FLOW_BASE)
+                .AppendPathSegment($"{signFlowId}/status")
                 .SetQueryParams(queryParams)
                 .GetJsonAsync<GetFlowStatusResponse>();
         }
 
-        public async Task SetFlowAction(SetFlowActionRequest setFlowActionRequest)
+        public async Task SetFlowAction(string signFlowId,SetFlowActionRequest setFlowActionRequest)
         {
             await GetServiceBaseUrl()
-               .AppendPathSegment(nameof(SetFlowAction))
+                .AppendPathSegment(FLOW_BASE)
+               .AppendPathSegment($"{signFlowId}/action")
                .PostJsonAsync(setFlowActionRequest);
         }
 
-        public async Task SetSignatures(ExSetSignFlowRequest exSetSignFlowRequest)
+        public async Task SetSignatures(string signFlowId, ExSetSignFlowRequest exSetSignFlowRequest)
         {
             await GetServiceBaseUrl()
-               .AppendPathSegment(nameof(SetSignatures))
+               .AppendPathSegment(FLOW_BASE)
+               .AppendPathSegment($"{signFlowId}/SetSignatures")
                .PostJsonAsync(exSetSignFlowRequest);
         }
     }

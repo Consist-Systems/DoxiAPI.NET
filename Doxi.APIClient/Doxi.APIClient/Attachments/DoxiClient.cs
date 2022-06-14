@@ -15,25 +15,31 @@ namespace Doxi.APIClient
                 [nameof(signFlowId)] = signFlowId,
             };
             var result = await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(GetFlowAttachments))
+                .AppendPathSegment(FLOW_BASE)
+                .AppendPathSegment(signFlowId)
+                .AppendPathSegment("attachments")
                 .SetQueryParams(queryParams)
                 .GetStreamAsync();
             return result.ToBytes();
         }
 
-        public async Task<byte[]> GetFlowAttachmentField(GetFlowAttachmentFieldRequest getFlowAttachmentFieldRequest)
+        public async Task<byte[]> GetFlowAttachmentField(string signFlowId, GetFlowAttachmentFieldRequest getFlowAttachmentFieldRequest)
         {
             var result = await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(GetFlowAttachmentField))
+                .AppendPathSegment(FLOW_BASE)
+                .AppendPathSegment(signFlowId)
+                .AppendPathSegment("AttachmentField")
                 .PostJsonAsync(getFlowAttachmentFieldRequest)
                 .ReceiveStream();
             return result.ToBytes();
         }
 
-        public async Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowRequest)
+        public async Task<string> AddAttachmentToFlow(string signFlowId, AddAttachmentToFlowRequest addAttachmentToFlowRequest)
         {
             return await GetServiceBaseUrl()
-                .AppendPathSegment(nameof(AddAttachmentToFlow))
+                .AppendPathSegment(FLOW_BASE)
+                .AppendPathSegment(signFlowId)
+                .AppendPathSegment("attachments")
                 .PostJsonAsync(addAttachmentToFlowRequest)
                 .ReceiveString();
         }

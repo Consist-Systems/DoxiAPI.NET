@@ -1,15 +1,9 @@
-﻿using Consist.Doxi.Domain.Models;
-using Consist.Doxi.Domain.Models.ExternalAPI;
-using Consist.Doxi.Enums;
-using Flurl;
+﻿using Flurl;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Doxi.APIClient
 {
@@ -37,7 +31,7 @@ namespace Doxi.APIClient
         });
 
         private IFlurlRequest GetServiceBaseUrl() => new Url(_serviceUrl)
-           .AppendPathSegment("/ExternalDoxiAPI")
+           .AppendPathSegment("ex")
            .WithHeader("X-Tenant", _companyName)
            .ConfigureRequest(settings => settings.JsonSerializer = _serializer)
            .AfterCall(HandleErrors)

@@ -10,27 +10,26 @@ namespace Doxi.APIClient
 {
     public interface IDoxiClient
     {
-        Task<CreateFlowResponse> AddSignFlowByFileStream(ExCreateFlowRequestBase createFlowJsonRequest, byte[] documentFile);
-        Task<byte[]> GetDocumentWithSigns(string signFlowId);
-        Task<byte[]> GetDocumentWithoutSigns(string signFlowId);
+        Task<CreateFlowResponse> AddSignFlow(ExCreateFlowRequestBase createFlowJsonRequest, byte[] documentFile);
+        Task<byte[]> GetDocument(string signFlowId, bool withSigns = true);
         Task<GetAllFlowsResponse> GetAllFlows();
         Task<GetFlowsStatusResponse[]> GetFlowsStatus(GetFlowsStatusRequest getFlowsStatusRequest);
-        Task SetFlowAction(SetFlowActionRequest setFlowActionRequest);
-        Task<byte[]> GetFlowAttachmentField(GetFlowAttachmentFieldRequest getFlowAttachmentFieldRequest);
-        Task<GetFlowMetadataResponse> GetFlowMetadata(string signFlowId);
+        Task SetFlowAction(string signFlowId, SetFlowActionRequest setFlowActionRequest);
+        Task<byte[]> GetFlowAttachmentField(string signFlowId,GetFlowAttachmentFieldRequest getFlowAttachmentFieldRequest);
+        Task<GetFlowMetadataResponse> GetFlow(string signFlowId);
         Task<byte[]> GetFlowAttachments(string signFlowId);
         Task<GetFlowStatusResponse> GetFlowStatus(string signFlowId);
-        Task<string> AddNewTemplate(ExAddTemplateRequest exAddTemplateRequest);
-        Task UpdateTemplate(ExUpdateTemplateRequest exUpdateTemplateRequest);
-        Task<CreateFlowFromTemplateResponse> CreateFlowFromTemplate(CreateFlowFromTemplateRequest createFlowFromTemplateRequest);
-        Task<GetExTemplateInfoResponse> GetTemplateInfo(string templateId);
-        Task DeleteUserTemplate(DeleteTemplateRequest deleteTemplateRequest);
-        Task<GetUserTemplatesResponse[]> GetUserTemplates(ParticipantKey<ParticipantKeyType> userKey);
-        Task<List<GetGroupsResponseWithUsersKeys>> GetGroups(ParticipantKey<ParticipantKeyType> userKey);
-        Task SetSignatures(ExSetSignFlowRequest exSetSignFlowRequest);
+        Task<string> AddTemplate(ExAddTemplateRequest exAddTemplateRequest);
+        Task UpdateTemplate(string templateId, ExUpdateTemplateRequest exUpdateTemplateRequest);
+        Task<CreateFlowFromTemplateResponse> CreateFlowFromTemplate(string templateId, CreateFlowFromTemplateRequest createFlowFromTemplateRequest);
+        Task<GetExTemplateInfoResponse> GetTemplate(string templateId);
+        Task DeleteUserTemplate(string templateId, DeleteTemplateRequest deleteTemplateRequest);
+        Task<GetUserTemplatesResponse[]> GetUserTemplates(ParticipantKeyType sreachType, string searchValue);
+        Task<List<GetGroupsResponseWithUsersKeys>> GetUserGroups(ParticipantKeyType sreachType, string searchValue);
+        Task SetSignatures(string signFlowId, ExSetSignFlowRequest exSetSignFlowRequest);
         Task<string> CreateVRMeeting(CreateVRMeetingRequest createVRRoomRequest);
-        Task<GetVRMeetingsResponse> GetVRMeetings(GetVRMeetingsRequest getVRMeetingsRequest);
-        Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowRequest);
-        Task<IEnumerable<string>> GetFlowsByFilter(GetFlowsByFilterRequest getFlowsByFilterRequest);
+        Task<GetVRMeetingsResponse> SearchVRMeetings(GetVRMeetingsRequest getVRMeetingsRequest);
+        Task<string> AddAttachmentToFlow(string signFlowId, AddAttachmentToFlowRequest addAttachmentToFlowRequest);
+        Task<IEnumerable<string>> SearchFlow(GetFlowsByFilterRequest getFlowsByFilterRequest);
     }
 }

@@ -21,4 +21,10 @@
     <ProjectReference Include="..\..\Doxi.APIClient\Doxi.APIClient.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="emptyPDF.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
