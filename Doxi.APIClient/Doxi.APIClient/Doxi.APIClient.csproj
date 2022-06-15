@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Consist.Doxi.External.Models" Version="4.3.0.1-alpha" />
+    <PackageReference Include="Consist.Doxi.External.Models" Version="4.3.0.2-alpha" />
     <PackageReference Include="Flurl.Http.Signed" Version="3.2.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
