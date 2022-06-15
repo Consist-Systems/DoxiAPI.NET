@@ -15,23 +15,27 @@ namespace Doxi.APIClient.Tests
         [SetUp]
         public void Setup()
         {
-            var serviceUrl = "https://doxisign.consist.co.il:4433/Doxiapi";
-
             var builder = new ConfigurationBuilder()
                 .AddUserSecrets<FlowsTests>();
 
             _configuration = builder.Build();
 
             _doxiClient = new DoxiClient(
-                serviceUrl,
+                _configuration["ServiceUrl"],
                 _configuration["UserName"],
                 _configuration["Password"]);
         }
 
         [Test]
-        public async Task GetAllFlows_Test()
+        public async Task GetAllFlowsAsync_Test()
         {
             var result = await _doxiClient.GetAllFlows();
+        }
+
+        [Test]
+        public void GetAllFlows_Test()
+        {
+            var result = _doxiClient.GetAllFlows().Result;
         }
 
         [Test]

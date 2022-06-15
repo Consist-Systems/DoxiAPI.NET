@@ -24,11 +24,11 @@ namespace Doxi.APIClient
 
         public override HttpMessageHandler CreateMessageHandler()
         {
-            var httpClientHandler = new HttpClientHandler { 
-                UseDefaultCredentials = true,
-            };
+            var httpClientHandler = new HttpClientHandler();
             if (!string.IsNullOrWhiteSpace(_username))
                 httpClientHandler.Credentials = new NetworkCredential(_username, _password);
+            else
+                httpClientHandler.UseDefaultCredentials = true;
 
             if (_acceptAnyServerCertificateValidator)
                 httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
