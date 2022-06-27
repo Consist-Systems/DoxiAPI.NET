@@ -82,14 +82,9 @@ namespace Doxi.APIClient
 
         public async Task<GetFlowStatusResponse> GetFlowStatus(string signFlowId)
         {
-            var queryParams = new Dictionary<string, object>
-            {
-                [nameof(signFlowId)] = signFlowId,
-            };
             return await GetServiceBaseUrl()
                 .AppendPathSegment(FLOW_BASE)
                 .AppendPathSegment($"{signFlowId}/status")
-                .SetQueryParams(queryParams)
                 .GetJsonAsync<GetFlowStatusResponse>();
         }
 

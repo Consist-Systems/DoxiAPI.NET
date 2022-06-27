@@ -27,7 +27,8 @@ namespace Doxi.APIClient
         private ISerializer _serializer = new NewtonsoftJsonSerializer(new JsonSerializerSettings
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
+            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
+            DateFormatString = "dd/MM/yyyy HH:mm:ss"
         });
 
         private IFlurlRequest GetServiceBaseUrl() => new Url(_serviceUrl)

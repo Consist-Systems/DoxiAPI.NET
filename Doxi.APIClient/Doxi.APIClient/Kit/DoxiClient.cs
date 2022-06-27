@@ -1,5 +1,8 @@
 ﻿using Consist.Doxi.Domain.Models;
+using Consist.Doxi.Domain.Models.ExternalAPI;
 using Flurl.Http;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
