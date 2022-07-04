@@ -38,15 +38,11 @@ namespace Doxi.APIClient
 
         public async Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowRequest)
         {
-            dynamic addAttachmentToFlowData = new
-            {
-                SignFlowId = addAttachmentToFlowRequest.SignFlowId,
-                UserMail = addAttachmentToFlowRequest.UserMail,
-            };
             return await GetServiceBaseUrl()
                 .AppendPathSegment(nameof(AddAttachmentToFlow))
                 .PostMultipartAsync(mp => mp.AddFile("file", new MemoryStream(addAttachmentToFlowRequest.FileByte), addAttachmentToFlowRequest.FileName)
-                                            .AddJson("createFlowJsonRequest", addAttachmentToFlowData))
+                                            .AddString("SignFlowId", addAttachmentToFlowRequest.SignFlowId)
+                                            .AddString("UserMail", addAttachmentToFlowRequest.UserMail))
                 .ReceiveString();
         }
     }

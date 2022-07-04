@@ -84,8 +84,20 @@ namespace Doxi.APIClient.Tests
             var result = await _doxiClient.AddSignFlowByFileStream(newFlowParams, documentTest);
         }
 
-        
+        [Test]
+        public async Task AddAttachmentToFlow_Test()
+        {
+            var documentTest = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "../../../3pages.pdf"));
+            var allFlows =  await _doxiClient.GetAllFlows();
 
+            await _doxiClient.AddAttachmentToFlow(new AddAttachmentToFlowRequest
+            {
+                FileByte = documentTest,
+                FileName = "test.pdf",
+                SignFlowId = allFlows.SignFlowsIds.Last(),
+                UserMail = "ronenr@consist.co.il"
+            });
+        }
 
     }
 }

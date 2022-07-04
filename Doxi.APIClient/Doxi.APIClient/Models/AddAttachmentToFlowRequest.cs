@@ -1,4 +1,6 @@
-﻿namespace Doxi.APIClient
+﻿using Newtonsoft.Json;
+
+namespace Doxi.APIClient
 {
     public class AddAttachmentToFlowRequest
     {
@@ -7,8 +9,10 @@
         /// </summary>
         public string SignFlowId { get; set; }
 
+        [JsonIgnore]
         public string FileName { get; set; }
 
+        [JsonIgnore]
         public byte[] FileByte { get; set; }
 
         /// <summary>
