@@ -44,10 +44,10 @@ namespace Doxi.APIClient
         {
             if(flurlCall?.Response?.StatusCode != 200)
             {
-                if(flurlCall.Response.StatusCode == 400)
+                if(flurlCall?.Response?.StatusCode == 400)
                     throw new ArgumentException(flurlCall.Response.GetStringAsync().Result);
                 else
-                    throw new Exception(flurlCall.Response.GetStringAsync().Result);
+                    throw new Exception(flurlCall?.Response?.GetStringAsync().Result);
             }
             
         }
