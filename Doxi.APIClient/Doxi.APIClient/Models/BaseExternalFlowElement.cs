@@ -55,6 +55,8 @@ namespace Doxi.APIClient
 
         [JsonIgnore]
         public bool IsDisableAttachment { get; set; }
+
+        public string ElementId { get; set; }
     }
 
     public enum ExHorizontalAlignment
