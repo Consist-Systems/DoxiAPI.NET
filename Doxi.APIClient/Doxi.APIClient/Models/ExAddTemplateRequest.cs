@@ -25,6 +25,7 @@ namespace Doxi.APIClient
         
         public string Base64DocumentFile { get; set; }
 
+        public SendMethodType SendMethodType { get; set; }
 
     }
 }

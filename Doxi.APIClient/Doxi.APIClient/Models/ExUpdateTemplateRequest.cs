@@ -25,5 +25,6 @@ namespace Doxi.APIClient
 
         [Obsolete]
         public bool IsNoDecline { get; set; }
+        public SendMethodType SendMethodType { get; set; }
     }
 }
