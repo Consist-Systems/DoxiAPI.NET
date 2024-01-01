@@ -25,7 +25,7 @@ namespace Doxi.APIClient
         Task<GetExTemplateInfoResponse> GetTemplate(string templateId);
         Task DeleteUserTemplate(string templateId, DeleteTemplateRequest deleteTemplateRequest);
         Task<GetUserTemplatesResponse[]> GetUserTemplates(ParticipantKeyType sreachType, string searchValue);
-        Task<List<GetGroupsResponseWithUsersKeys>> GetUserGroups(ParticipantKeyType sreachType, string searchValue);
+        Task<List<GetGroupsResponseWithUsersKey>> GetUserGroups(ParticipantKeyType sreachType, string searchValue);
         Task SetSignatures(string signFlowId, ExSetSignFlowRequest exSetSignFlowRequest);
         Task<string> CreateVRMeeting(CreateVRMeetingRequest createVRRoomRequest);
         Task<GetVRMeetingsResponse> SearchVRMeetings(GetVRMeetingsRequest getVRMeetingsRequest);

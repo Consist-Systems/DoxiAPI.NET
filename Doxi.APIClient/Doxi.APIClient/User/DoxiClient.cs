@@ -10,14 +10,14 @@ namespace Doxi.APIClient
     {
         private const string USER_BASE = "user";
 
-        public async Task<List<GetGroupsResponseWithUsersKeys>> GetUserGroups(ParticipantKeyType sreachType, string searchValue)
+        public async Task<List<GetGroupsResponseWithUsersKey>> GetUserGroups(ParticipantKeyType sreachType, string searchValue)
         {
             return await GetServiceBaseUrl()
                 .AppendPathSegment(USER_BASE)
                 .AppendPathSegment(sreachType)
                 .AppendPathSegment(searchValue)
                 .AppendPathSegment("groups")
-                .GetJsonAsync<List<GetGroupsResponseWithUsersKeys>>();
+                .GetJsonAsync<List<GetGroupsResponseWithUsersKey>>();
         }
 
         public async Task<GetUserTemplatesResponse[]> GetUserTemplates(ParticipantKeyType sreachType, string searchValue)
