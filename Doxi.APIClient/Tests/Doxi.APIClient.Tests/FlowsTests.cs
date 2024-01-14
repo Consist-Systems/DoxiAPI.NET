@@ -33,6 +33,24 @@ namespace Doxi.APIClient.Tests
         {
             var result = await _doxiClient.GetAllFlows();
         }
+        [Test]
+        public async Task AddAttachmentToFlow_Test()
+        {
+            var pdfFile = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "emptyPDF.pdf"));
+
+            var result = await _doxiClient.AddAttachmentToFlow("397174cc-400f-4c9d-a188-3a1399d1500b",
+                new Consist.Doxi.Domain.Models.ExternalAPI.AddAttachmentToFlowRequest()
+                {
+                    FileByte = pdfFile,
+                    FileName = "test",
+                    SignFlowId = "397174cc-400f-4c9d-a188-3a1399d1500b",
+                    UserAddedTheFile = new ParticipantKey<ParticipantKeyType>()
+                    {
+                        Key = "doxi_service@metro.co.il",
+                        Type = ParticipantKeyType.UserEmail
+                    }
+                });
+        }
 
         [Test]
         public async Task AddSignFlow_Test()
@@ -76,7 +94,7 @@ namespace Doxi.APIClient.Tests
                         LastName = "Doe"
                     }
                 }
-            },pdfFile );
+            }, pdfFile);
         }
 
         [Test]
@@ -104,7 +122,7 @@ namespace Doxi.APIClient.Tests
                     new KeyValuePair<string,string>("value","2")
                 },
                 SignatureFlowStatus = 0
-            }) ; 
+            });
         }
 
         [Test]
