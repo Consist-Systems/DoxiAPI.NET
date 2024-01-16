@@ -103,5 +103,15 @@ namespace Doxi.APIClient
                .AppendPathSegment($"{signFlowId}/SetSignatures")
                .PostJsonAsync(exSetSignFlowRequest);
         }
+       
+        public async Task ReplaceSigner(ExReplaceSignerRequest exReplaceSignerRequest)
+        {
+            await GetServiceBaseUrl()
+               .AppendPathSegment(FLOW_BASE)
+               .AppendPathSegment("ReplaceSigner")
+               .PostJsonAsync(exReplaceSignerRequest);
+        }
+
+
     }
 }

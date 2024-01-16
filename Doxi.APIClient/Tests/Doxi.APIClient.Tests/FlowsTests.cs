@@ -108,7 +108,7 @@ namespace Doxi.APIClient.Tests
         [Test]
         public async Task GetFlow_Test()
         {
-            var result = await _doxiClient.GetFlow("99add5fd-e0f7-495d-a85a-14e5de92f60f");
+            var result = await _doxiClient.GetFlow("d779d333-cbb6-4e5f-a53d-5323c27ca389");
         }
 
         [Test]
@@ -162,7 +162,7 @@ namespace Doxi.APIClient.Tests
                     Type = ParticipantKeyType.UserEmail
                 }
             };
-            var result =  _doxiClient.SetFlowAction(allFlows.SignFlowsIds.First(), flowActionRequest);
+            var result = _doxiClient.SetFlowAction(allFlows.SignFlowsIds.First(), flowActionRequest);
         }
 
         [Test]
@@ -196,6 +196,32 @@ namespace Doxi.APIClient.Tests
             };
             var result = _doxiClient.SetSignatures(allFlows.SignFlowsIds.First(), signFlowRequest);
         }
+
+        [Test]
+        public async Task ReplaceSigner_Test()
+        {
+            var exReplaceSignerRequest = new ExReplaceSignerRequest
+            {                
+                CurrentSignerKey = new ParticipantKey<ParticipantKeyType>()
+                {
+                    Key = "ddacfedb-213a-4033-989e-3339089117a8",
+                    Type = ParticipantKeyType.UserId
+                },
+                NewtSigner = new ExUser()
+                {
+                    UserKey = new ParticipantKey<ParticipantKeyType>()
+                    {
+                        Key = "chenl@consist.co.il",
+                        Type = ParticipantKeyType.UserEmail
+                    },
+                    Email = "chenl@consist.co.il",
+                    FirstName = "Chen",
+                },
+                signFlowsId = new[] { "d779d333-cbb6-4e5f-a53d-5323c27ca389" },
+            };
+            await _doxiClient.ReplaceSigner(exReplaceSignerRequest);
+        }
+
     }
 
 }
