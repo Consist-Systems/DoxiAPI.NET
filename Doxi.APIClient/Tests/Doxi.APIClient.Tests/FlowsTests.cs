@@ -38,8 +38,8 @@ namespace Doxi.APIClient.Tests
         {
             var pdfFile = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "emptyPDF.pdf"));
 
-            var result = await _doxiClient.AddAttachmentToFlow("397174cc-400f-4c9d-a188-3a1399d1500b",
-                new Consist.Doxi.Domain.Models.ExternalAPI.AddAttachmentToFlowRequest()
+            var result = await _doxiClient.AddAttachmentToFlow(
+                new AddAttachmentToFlowData()
                 {
                     FileByte = pdfFile,
                     FileName = "test",

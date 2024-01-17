@@ -36,14 +36,14 @@ namespace Doxi.APIClient
             return result.ToBytes();
         }
 
-        public async Task<string> AddAttachmentToFlow(string signFlowId, AddAttachmentToFlowRequest addAttachmentToFlowRequest)
+        public async Task<string> AddAttachmentToFlow(AddAttachmentToFlowData addAttachmentToFlowData)
         {
             return await GetServiceBaseUrl()
             .AppendPathSegment(FLOW_BASE)
-            .AppendPathSegment(signFlowId)
+            .AppendPathSegment(addAttachmentToFlowData.SignFlowId)
             .AppendPathSegment("attachments")
-            .PostMultipartAsync(mp => mp.AddFile("file", new MemoryStream(addAttachmentToFlowRequest.FileByte), addAttachmentToFlowRequest.FileName)
-                                         .AddString("addAttachmentToFlowRequest", JsonConvert.SerializeObject(addAttachmentToFlowRequest)))
+            .PostMultipartAsync(mp => mp.AddFile("file", new MemoryStream(addAttachmentToFlowData.FileByte), addAttachmentToFlowData.FileName)
+                                         .AddString("addAttachmentToFlowRequest", JsonConvert.SerializeObject(addAttachmentToFlowData)))
              .ReceiveString();
         }
     }

@@ -8,10 +8,15 @@
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
 	  <UserSecretsId>1c100d93-5fb8-4be9-aa35-89b101c3c499</UserSecretsId>
+	  <Description>**Doxi** is advanced software designed for digitally signing documents and streamlining the approval process of various organizational documents, including agreements, contracts, orders, procurement processes, directorate approvals, invoices, and more. The Doxi system enables participants in the signature and confirmation rounds to sign securely and immediately in a digital form from anywhere, using both mobile phones and computers.
+
+This Nuget package is an interface to Doxi REST API documented in the link:
+[https://apidocs.doxi-sign.com](https://apidocs.doxi-sign.com)
+</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Consist.Doxi.External.Models" Version="4.8.0" />
+    <PackageReference Include="Consist.Doxi.External.Models" Version="4.8.0.2" />
     <PackageReference Include="Flurl.Http.Signed" Version="3.2.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
