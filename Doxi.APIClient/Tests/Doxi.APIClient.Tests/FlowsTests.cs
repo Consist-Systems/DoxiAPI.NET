@@ -33,24 +33,27 @@ namespace Doxi.APIClient.Tests
         {
             var result = await _doxiClient.GetAllFlows();
         }
-       // [Test]
-        //public async Task AddAttachmentToFlow_Test()
-        //{
-        //    var pdfFile = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "emptyPDF.pdf"));
+        [Test]
+        public async Task AddAttachmentToFlow_Test()
+        {
+            var pdfFile = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "emptyPDF.pdf"));
 
             var result = await _doxiClient.AddAttachmentToFlow(
-                new AddAttachmentToFlowData()
-        //        {
-        //            FileByte = pdfFile,
-        //            FileName = "test",
-        //            SignFlowId = "397174cc-400f-4c9d-a188-3a1399d1500b",
-        //            UserAddedTheFile = new ParticipantKey<ParticipantKeyType>()
-        //            {
-        //                Key = "doxi_service@metro.co.il",
-        //                Type = ParticipantKeyType.UserEmail
-        //            }
-        //        });
-        //}
+                new AddAttachmentToFlowRequest()
+                {
+                    File = new FileData
+                    {
+                        FileBytes = pdfFile,
+                        Name = "test",
+                    },
+                    SignFlowId = "397174cc-400f-4c9d-a188-3a1399d1500b",
+                    UserAddedTheFile = new ParticipantKey<ParticipantKeyType>()
+                    {
+                        Key = "doxi_service@metro.co.il",
+                        Type = ParticipantKeyType.UserEmail
+                    }
+                });
+        }
 
         [Test]
         public async Task AddSignFlow_Test()
@@ -201,7 +204,7 @@ namespace Doxi.APIClient.Tests
         public async Task ReplaceSigner_Test()
         {
             var exReplaceSignerRequest = new ExReplaceSignerRequest
-            {                
+            {
                 CurrentSignerKey = new ParticipantKey<ParticipantKeyType>()
                 {
                     Key = "ddacfedb-213a-4033-989e-3339089117a8",
