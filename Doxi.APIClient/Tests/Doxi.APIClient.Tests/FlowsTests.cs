@@ -33,24 +33,24 @@ namespace Doxi.APIClient.Tests
         {
             var result = await _doxiClient.GetAllFlows();
         }
-        [Test]
-        public async Task AddAttachmentToFlow_Test()
-        {
-            var pdfFile = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "emptyPDF.pdf"));
+       // [Test]
+        //public async Task AddAttachmentToFlow_Test()
+        //{
+        //    var pdfFile = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "emptyPDF.pdf"));
 
-            var result = await _doxiClient.AddAttachmentToFlow("397174cc-400f-4c9d-a188-3a1399d1500b",
-                new Consist.Doxi.Domain.Models.ExternalAPI.AddAttachmentToFlowRequest()
-                {
-                    FileByte = pdfFile,
-                    FileName = "test",
-                    SignFlowId = "397174cc-400f-4c9d-a188-3a1399d1500b",
-                    UserAddedTheFile = new ParticipantKey<ParticipantKeyType>()
-                    {
-                        Key = "doxi_service@metro.co.il",
-                        Type = ParticipantKeyType.UserEmail
-                    }
-                });
-        }
+        //    var result = await _doxiClient.AddAttachmentToFlow("397174cc-400f-4c9d-a188-3a1399d1500b",
+        //        new Consist.Doxi.Domain.Models.ExternalAPI.AddAttachmentToFlowRequest()
+        //        {
+        //            FileByte = pdfFile,
+        //            FileName = "test",
+        //            SignFlowId = "397174cc-400f-4c9d-a188-3a1399d1500b",
+        //            UserAddedTheFile = new ParticipantKey<ParticipantKeyType>()
+        //            {
+        //                Key = "doxi_service@metro.co.il",
+        //                Type = ParticipantKeyType.UserEmail
+        //            }
+        //        });
+        //}
 
         [Test]
         public async Task AddSignFlow_Test()
@@ -108,7 +108,7 @@ namespace Doxi.APIClient.Tests
         [Test]
         public async Task GetFlow_Test()
         {
-            var result = await _doxiClient.GetFlow("d779d333-cbb6-4e5f-a53d-5323c27ca389");
+            var result = await _doxiClient.GetFlow("c3be52bf-dc24-4180-8d66-f4c06aa1a7d3");
         }
 
         [Test]

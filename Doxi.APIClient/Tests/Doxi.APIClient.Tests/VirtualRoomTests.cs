@@ -39,23 +39,18 @@ namespace Doxi.APIClient.Tests
                 MeetingDateTime = new DateTime(2022, 06, 27, 14, 0, 0),
                 SignFlowsIds = new[]
                 {
-                    "99add5fd-e0f7-495d-a85a-14e5de92f60f"
+                    "4174d583-0590-440e-bfb9-2f83eef58d2e"
                 },
                 RoomHostUser = new ParticipantKey<ParticipantKeyType>
                 {
-                    Key = "dudim@consist.co.il",
+                    Key = "chenl@consist.co.il",
                     Type = ParticipantKeyType.UserEmail
                 },
                 Participants = new List<ParticipantKey<ParticipantKeyType>>
                 {
                     new ParticipantKey<ParticipantKeyType>
                     {
-                        Key = "dudim@consist.co.il",
-                        Type = ParticipantKeyType.UserEmail
-                    },
-                    new ParticipantKey<ParticipantKeyType>
-                    {
-                        Key = "test@consist.co.il",
+                        Key = "chenl@consist.co.il",
                         Type = ParticipantKeyType.UserEmail
                     }
                 }
@@ -76,5 +71,21 @@ namespace Doxi.APIClient.Tests
                 
             });
         }
+
+        [Test]
+        public async Task AddFlowToVRMeeting_Test()
+        {
+            var result = await _doxiClient.AddFlowToVRMeeting("","");
+        }
+
+        [Test]
+        public async Task UpdateVRMeeting_Test()
+        {
+            await _doxiClient.UpdateVRMeeting("", new UpdateVRMeetingRequest()
+            {
+                SignFlowsIds = new[] { "99add5fd-e0f7-495d-a85a-14e5de92f60f" }
+            });
+        }
+
     }
 }
