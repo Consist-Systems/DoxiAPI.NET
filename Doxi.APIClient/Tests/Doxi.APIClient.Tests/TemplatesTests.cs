@@ -69,8 +69,8 @@ namespace Doxi.APIClient.Tests
                         }
                     }
                 }
-                
-        });
+
+            });
 
             await _doxiClient.DeleteUserTemplate(templateId, new DeleteTemplateRequest
             {
@@ -82,6 +82,32 @@ namespace Doxi.APIClient.Tests
             });
         }
 
+        [Test]
+        public async Task DeleteAttachmentFromTemplate()
+        {
+            await _doxiClient.DeleteAttachmentFromTemplate("b692ca68-883d-4a99-a2e6-58f1777ce4c1", "653cd25c-31b4-4af3-a267-2deac2cde809");
+        }
 
+        [Test]
+        public async Task AddAttachmentToTemplate()
+        {
+            var pdfFile = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "emptyPDF.pdf"));
+
+            var result = await _doxiClient.AddAttachmentToTemplate("b692ca68-883d-4a99-a2e6-58f1777ce4c1", new AddAttachmentToFlowRequest
+            {
+                File = new FileData
+                {
+                    FileBytes = pdfFile,
+                    Name = "pdfFile"
+                },
+                SignFlowId = "",
+                UserAddedTheFile = new ParticipantKey<ParticipantKeyType>
+                {
+                    Key = "dudim@consist.co.il",
+                    Type = ParticipantKeyType.UserEmail
+                },
+                UserMail = ""
+            });
+        }
     }
 }
