@@ -38,8 +38,8 @@ namespace Doxi.APIClient.Tests
         //{
         //    var pdfFile = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "emptyPDF.pdf"));
 
-        //    var result = await _doxiClient.AddAttachmentToFlow("397174cc-400f-4c9d-a188-3a1399d1500b",
-        //        new Consist.Doxi.Domain.Models.ExternalAPI.AddAttachmentToFlowRequest()
+            var result = await _doxiClient.AddAttachmentToFlow(
+                new AddAttachmentToFlowData()
         //        {
         //            FileByte = pdfFile,
         //            FileName = "test",
@@ -108,7 +108,7 @@ namespace Doxi.APIClient.Tests
         [Test]
         public async Task GetFlow_Test()
         {
-            var result = await _doxiClient.GetFlow("c3be52bf-dc24-4180-8d66-f4c06aa1a7d3");
+            var result = await _doxiClient.GetFlow("d779d333-cbb6-4e5f-a53d-5323c27ca389");
         }
 
         [Test]
