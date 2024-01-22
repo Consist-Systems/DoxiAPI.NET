@@ -1,8 +1,10 @@
 ﻿using Consist.Doxi.Domain.Models;
 using Consist.Doxi.Domain.Models.ExternalAPI;
 using Consist.Doxi.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,7 +31,7 @@ namespace Doxi.APIClient
         Task SetSignatures(string signFlowId, ExSetSignFlowRequest exSetSignFlowRequest);
         Task<string> CreateVRMeeting(CreateVRMeetingRequest createVRRoomRequest);
         Task<GetVRMeetingsResponse> SearchVRMeetings(GetVRMeetingsRequest getVRMeetingsRequest);
-        Task<string> AddAttachmentToFlow(string signFlowId, AddAttachmentToFlowRequest addAttachmentToFlowRequest);
+        Task<string> AddAttachmentToFlow(AddAttachmentToFlowRequest addAttachmentToFlowDatat);
         Task<IEnumerable<string>> SearchFlow(GetFlowsByFilterRequest getFlowsByFilterRequest);
         Task<ExAddKitResponse> AddKit(ExAddKitRequest createKitRequest);
         Task UpdateKit(string kitId, ExUpdateKitRequest updateKitRequest);
@@ -38,5 +40,8 @@ namespace Doxi.APIClient
         Task<IEnumerable<ExGetKitsResponse>> GetKits();
         Task<string> AddFlowToVRMeeting(string vrMeetingId, string signflowId);
         Task UpdateVRMeeting(string vrMeetingId, UpdateVRMeetingRequest updateVRMeetingRequest);
+        Task<string> AddAttachmentAsBase64ToFlow(string signFlowId, AddAttachmentBase64ToFlowRequest addAttachmentToFlowRequest);
+        Task DeleteAttachmentFromTemplate(string templateId, string attachmentId);
+        Task<string> AddAttachmentToTemplate(string templateId, AddAttachmentToFlowRequest addAttachmentRequest);
     }
 }

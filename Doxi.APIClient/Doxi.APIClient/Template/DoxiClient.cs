@@ -1,12 +1,19 @@
 ﻿using Consist.Doxi.Domain.Models;
+using Consist.Doxi.Domain.Models.ExternalAPI;
 using Flurl.Http;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
 {
-    public partial class DoxiClient 
+    public partial class DoxiClient
     {
         private const string TEMPLATE_BASE = "template";
 
@@ -56,5 +63,28 @@ namespace Doxi.APIClient
                  .SetQueryParams(queryParams)
                  .GetJsonAsync<GetExTemplateInfoResponse>();
         }
+
+        public async Task<string> AddAttachmentToTemplate(string templateId, AddAttachmentToFlowRequest addAttachmentRequest)
+        {
+            //var queryParams = new Dictionary<string, object>
+            //{
+            //    [nameof(templateId)] = templateId,
+            //};
+            return await GetServiceBaseUrl()
+                 .AppendPathSegment(TEMPLATE_BASE)
+                 .AppendPathSegment($"{templateId}/attachments")
+                 .PostMultipartAsync(mp => mp.AddFile("file", new MemoryStream(addAttachmentRequest.File.FileBytes), addAttachmentRequest.File.Name)
+                                    .AddString("addAttachmentRequest", JsonConvert.SerializeObject(addAttachmentRequest)))
+                 .ReceiveString();
+        }
+
+        public async Task DeleteAttachmentFromTemplate(string templateId, string attachmentId)
+        {
+             await GetServiceBaseUrl()
+                 .AppendPathSegment(TEMPLATE_BASE)
+                 .AppendPathSegment($"{templateId}/attachments/{attachmentId}")
+                 .DeleteAsync();
+        }
+
     }
 }
