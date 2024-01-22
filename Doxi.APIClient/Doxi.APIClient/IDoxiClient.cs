@@ -35,6 +35,8 @@ namespace Doxi.APIClient
         Task UpdateKit(string kitId, ExUpdateKitRequest updateKitRequest);
         Task<ExGetKitInfoResponse> GetKit(string kitId);
         Task ReplaceSigner(ExReplaceSignerRequest exReplaceSignerRequest);
-
+        Task<IEnumerable<ExGetKitsResponse>> GetKits();
+        Task<string> AddFlowToVRMeeting(string vrMeetingId, string signflowId);
+        Task UpdateVRMeeting(string vrMeetingId, UpdateVRMeetingRequest updateVRMeetingRequest);
     }
 }

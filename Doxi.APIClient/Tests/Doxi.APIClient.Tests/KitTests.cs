@@ -74,7 +74,14 @@ namespace Doxi.APIClient.Tests
         [Test]
         public async Task GetKit_Test()
         {
-            var result = await _doxiClient.GetKit("648660de-a0ba-4555-b315-ff8c09dc68c7");
+            var result = await _doxiClient.GetKit("d9bfbc3c-b614-4bbb-97ca-e92a71e3088c");
         }
+
+        [Test]
+        public async Task GetKits_Test()
+        {
+           var x=  await _doxiClient.GetKits();
+        }
+
     }
 }

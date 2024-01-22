@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Doxi.APIClient
 {
-    public partial class DoxiClient 
+    public partial class DoxiClient
     {
         private const string KIT_BASE = "kit";
 
@@ -34,5 +34,13 @@ namespace Doxi.APIClient
                  .AppendPathSegment(kitId)
                  .GetJsonAsync<ExGetKitInfoResponse>();
         }
+
+        public async Task<IEnumerable<ExGetKitsResponse>> GetKits()
+        {
+            return await GetServiceBaseUrl()
+                 .AppendPathSegment(KIT_BASE)
+                 .GetJsonAsync<IEnumerable<ExGetKitsResponse>>();
+        }
+
     }
 }
