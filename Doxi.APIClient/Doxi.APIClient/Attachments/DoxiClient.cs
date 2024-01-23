@@ -51,7 +51,6 @@ namespace Doxi.APIClient
              .ReceiveString();
         }
 
-        // 500
         public async Task<AddAttachmentAsBase64ToFlowResponse> AddAttachmentAsBase64ToFlow(string signFlowId, AddAttachmentBase64ToFlowRequest addAttachmentToFlowRequest)
         {
             return await GetServiceBaseUrl()
