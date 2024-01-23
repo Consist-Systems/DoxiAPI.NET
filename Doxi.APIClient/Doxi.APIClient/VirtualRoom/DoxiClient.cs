@@ -26,9 +26,9 @@ namespace Doxi.APIClient
                .ReceiveJson<GetVRMeetingsResponse>();
         }
 
-        public async Task<string> AddFlowToVRMeeting(string vrMeetingId, string signflowId)
+        public async Task AddFlowToVRMeeting(string vrMeetingId, string signflowId)
         {
-            return await GetServiceBaseUrl()
+             await GetServiceBaseUrl()
                 .AppendPathSegment(VRMEETING_BASE)
                 .AppendPathSegment($"{vrMeetingId}/flow/{signflowId}")
                 .PostJsonAsync(new { vrMeetingId, signflowId })
