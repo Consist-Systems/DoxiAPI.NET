@@ -50,14 +50,16 @@ namespace Doxi.APIClient
                                          .AddString("addAttachmentToFlowRequest", JsonConvert.SerializeObject(addAttachmentToFlowData)))
              .ReceiveString();
         }
-        public async Task<string> AddAttachmentAsBase64ToFlow(string signFlowId, AddAttachmentBase64ToFlowRequest addAttachmentToFlowRequest)
+
+        // 500
+        public async Task<AddAttachmentAsBase64ToFlowResponse> AddAttachmentAsBase64ToFlow(string signFlowId, AddAttachmentBase64ToFlowRequest addAttachmentToFlowRequest)
         {
             return await GetServiceBaseUrl()
             .AppendPathSegment(FLOW_BASE)
             .AppendPathSegment(signFlowId)
             .AppendPathSegment("attachments/base64")
             .PostJsonAsync(addAttachmentToFlowRequest)
-            .ReceiveJson();
+            .ReceiveJson<AddAttachmentAsBase64ToFlowResponse>();
         }
     }
 }

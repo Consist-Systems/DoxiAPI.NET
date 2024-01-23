@@ -32,8 +32,6 @@ namespace Doxi.APIClient
             }
         }
 
-
-
         public async Task<byte[]> GetDocument(string signFlowId, bool withSigns = true)
         {
             var queryParams = new Dictionary<string, object>

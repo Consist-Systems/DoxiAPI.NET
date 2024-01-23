@@ -17,7 +17,7 @@ namespace Doxi.APIClient
         Task<GetAllFlowsResponse> GetAllFlows();
         Task<GetFlowsStatusResponse[]> GetFlowsStatus(GetFlowsStatusRequest getFlowsStatusRequest);
         Task SetFlowAction(string signFlowId, SetFlowActionRequest setFlowActionRequest);
-        Task<byte[]> GetFlowAttachmentField(string signFlowId,GetFlowAttachmentFieldRequest getFlowAttachmentFieldRequest);
+        Task<byte[]> GetFlowAttachmentField(string signFlowId, GetFlowAttachmentFieldRequest getFlowAttachmentFieldRequest);
         Task<GetFlowMetadataResponse> GetFlow(string signFlowId);
         Task<byte[]> GetFlowAttachments(string signFlowId);
         Task<GetFlowStatusResponse> GetFlowStatus(string signFlowId);
@@ -40,8 +40,9 @@ namespace Doxi.APIClient
         Task<IEnumerable<ExGetKitsResponse>> GetKits();
         Task<string> AddFlowToVRMeeting(string vrMeetingId, string signflowId);
         Task UpdateVRMeeting(string vrMeetingId, UpdateVRMeetingRequest updateVRMeetingRequest);
-        Task<string> AddAttachmentAsBase64ToFlow(string signFlowId, AddAttachmentBase64ToFlowRequest addAttachmentToFlowRequest);
+        Task<AddAttachmentAsBase64ToFlowResponse> AddAttachmentAsBase64ToFlow(string signFlowId, AddAttachmentBase64ToFlowRequest addAttachmentToFlowRequest);
         Task DeleteAttachmentFromTemplate(string templateId, string attachmentId);
         Task<string> AddAttachmentToTemplate(string templateId, AddAttachmentToFlowRequest addAttachmentRequest);
+        //Task<FormSettingsResponse> GetFormSettings(string compnayId, string formId);
     }
 }
