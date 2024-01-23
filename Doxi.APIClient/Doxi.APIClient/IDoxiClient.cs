@@ -38,7 +38,7 @@ namespace Doxi.APIClient
         Task<ExGetKitInfoResponse> GetKit(string kitId);
         Task ReplaceSigner(ExReplaceSignerRequest exReplaceSignerRequest);
         Task<IEnumerable<ExGetKitsResponse>> GetKits();
-        Task<string> AddFlowToVRMeeting(string vrMeetingId, string signflowId);
+        Task AddFlowToVRMeeting(string vrMeetingId, string signflowId);
         Task UpdateVRMeeting(string vrMeetingId, UpdateVRMeetingRequest updateVRMeetingRequest);
         Task<AddAttachmentAsBase64ToFlowResponse> AddAttachmentAsBase64ToFlow(string signFlowId, AddAttachmentBase64ToFlowRequest addAttachmentToFlowRequest);
         Task DeleteAttachmentFromTemplate(string templateId, string attachmentId);

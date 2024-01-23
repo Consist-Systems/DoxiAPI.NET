@@ -39,18 +39,18 @@ namespace Doxi.APIClient.Tests
                 MeetingDateTime = new DateTime(2022, 06, 27, 14, 0, 0),
                 SignFlowsIds = new[]
                 {
-                    "4174d583-0590-440e-bfb9-2f83eef58d2e"
+                    "6d1af0ba-cc5d-4d81-8ae3-c3bab595e8ad"
                 },
                 RoomHostUser = new ParticipantKey<ParticipantKeyType>
                 {
-                    Key = "chenl@consist.co.il",
+                    Key = "zivf@consist.co.il",
                     Type = ParticipantKeyType.UserEmail
                 },
                 Participants = new List<ParticipantKey<ParticipantKeyType>>
                 {
                     new ParticipantKey<ParticipantKeyType>
                     {
-                        Key = "chenl@consist.co.il",
+                        Key = "zivf@consist.co.il",
                         Type = ParticipantKeyType.UserEmail
                     }
                 }
@@ -75,7 +75,7 @@ namespace Doxi.APIClient.Tests
         [Test]
         public async Task AddFlowToVRMeeting_Test()
         {
-            var result = await _doxiClient.AddFlowToVRMeeting("","");
+             await _doxiClient.AddFlowToVRMeeting("","");
         }
 
         [Test]
