@@ -16,7 +16,7 @@ This Nuget package is an interface to Doxi REST API documented in the link:
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Consist.Doxi.External.Models" Version="4.8.0.4" />
+    <PackageReference Include="Consist.Doxi.External.Models" Version="4.8.0.5" />
     <PackageReference Include="Flurl.Http.Signed" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
@@ -24,7 +24,6 @@ This Nuget package is an interface to Doxi REST API documented in the link:
 
   <ItemGroup>
     <Folder Include="Company\" />
-    <Folder Include="WebHook\" />
   </ItemGroup>
 
 </Project>

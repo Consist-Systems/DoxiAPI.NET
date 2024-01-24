@@ -1,5 +1,6 @@
 ﻿using Consist.Doxi.Domain.Models;
 using Consist.Doxi.Domain.Models.ExternalAPI;
+using Consist.Doxi.Domain.WebHooks;
 using Consist.Doxi.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -43,6 +44,18 @@ namespace Doxi.APIClient
         Task<AddAttachmentAsBase64ToFlowResponse> AddAttachmentAsBase64ToFlow(string signFlowId, AddAttachmentBase64ToFlowRequest addAttachmentToFlowRequest);
         Task DeleteAttachmentFromTemplate(string templateId, string attachmentId);
         Task<string> AddAttachmentToTemplate(string templateId, AddAttachmentToFlowRequest addAttachmentRequest);
+        Task<GetDocumentInfoResponse> DocumentInfo(byte[] document);
+        Task<GetDocumentInfoResponse> DocumentInfoBase64(GetDocumentInfoRquest getDocumentInfoRquest);
+        Task<SearchInDocumentResponse> SearchInDocumentBase64(SearchInDocumentBase64Request request);
+        Task<SearchInDocumentResponse> SearchInDocument(byte[] file, SearchInDocumentRequest request);
+        Task<byte[]> MergeDocuments(IEnumerable<byte[]> documents);
+        Task<SubscribeWebHookResponse> Post(WebhookSubscription webhookSubscription);
+        Task<WebhookPayload> WebHookCheck(WebhookSubscription webhookSubscription);
+        Task<IEnumerable<WebhookSubscriptionList>> GetAllWebhookSubscription();
+        Task<IEnumerable<SearchWebhookCallLogsResponse>> SearchWebhookCallLogs(string subscriptionId, RequestWebhookSenderLog requestWebhook);
+        Task Put(string subscriptionId, WebhookSubscription webhookSubscription);
+        Task DeleteSubscription(string subscriptionId);
+
         //Task<FormSettingsResponse> GetFormSettings(string compnayId, string formId);
     }
 }
