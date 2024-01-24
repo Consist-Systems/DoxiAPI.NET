@@ -39,7 +39,7 @@ namespace Doxi.APIClient.Tests
                 IsEncryptData = false,
                 WebhookConsumer = new Consist.Doxi.Domain.Models.ExternalAPI.WebhookConsumer()
                 {
-                    Company = "rivka",
+                    Company = "",
                     ContactInfo = "0504134333",
                     Description = ""
                 },
@@ -58,7 +58,7 @@ namespace Doxi.APIClient.Tests
                 IsEncryptData = false,
                 WebhookConsumer = new Consist.Doxi.Domain.Models.ExternalAPI.WebhookConsumer()
                 {
-                    Company = "rivka",
+                    Company = "",
                     ContactInfo = "0504134333",
                     Description = ""
                 },
@@ -101,7 +101,7 @@ namespace Doxi.APIClient.Tests
                     Description = ""
                 },
                 WebhookEvents = null,
-                Webhooks = new List<string>() { "" },
+                Webhooks = null,
                 WebhookUri = ""
             });
         }

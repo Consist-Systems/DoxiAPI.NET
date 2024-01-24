@@ -55,7 +55,6 @@ namespace Doxi.APIClient
         Task<IEnumerable<SearchWebhookCallLogsResponse>> SearchWebhookCallLogs(string subscriptionId, RequestWebhookSenderLog requestWebhook);
         Task UpdateWebhookSubscription(string subscriptionId, WebhookSubscription webhookSubscription);
         Task DeleteSubscription(string subscriptionId);
-
-        //Task<FormSettingsResponse> GetFormSettings(string compnayId, string formId);
+        Task<byte[]> GetFormSettings(string compnayId, string formId);
     }
 }
