@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Doxi.APIClient.Tests
 {
-    public class DocumentTestsTests
+    public class DocumentTests
     {
         private IDoxiClient _doxiClient;
         [SetUp]

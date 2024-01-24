@@ -25,7 +25,7 @@ namespace Doxi.APIClient
             {
                 var response = await GetServiceBaseUrl()
                     .AppendPathSegment(DOCUMENT_BASE)
-                      .AppendPathSegment("/DocumentInfo")
+                      .AppendPathSegment("DocumentInfo")
                     .PostMultipartAsync(mp => mp
                         .AddFile("document", stream, "document"))
                     .ReceiveJson<GetDocumentInfoResponse>();
@@ -38,7 +38,7 @@ namespace Doxi.APIClient
         {
             return await GetServiceBaseUrl()
                       .AppendPathSegment(DOCUMENT_BASE)
-                      .AppendPathSegment("/DocumentInfoBase64")
+                      .AppendPathSegment("DocumentInfoBase64")
                       .PostJsonAsync(getDocumentInfoRquest)
                       .ReceiveJson<GetDocumentInfoResponse>();
         }
@@ -47,7 +47,7 @@ namespace Doxi.APIClient
         {
             return await GetServiceBaseUrl()
                        .AppendPathSegment(DOCUMENT_BASE)
-                       .AppendPathSegment("/SearchInDocumentBase64")
+                       .AppendPathSegment("SearchInDocumentBase64")
                        .PostJsonAsync(request)
                        .ReceiveJson<SearchInDocumentResponse>();
         }

@@ -49,11 +49,11 @@ namespace Doxi.APIClient
         Task<SearchInDocumentResponse> SearchInDocumentBase64(SearchInDocumentBase64Request request);
         Task<SearchInDocumentResponse> SearchInDocument(byte[] file, SearchInDocumentRequest request);
         Task<byte[]> MergeDocuments(IEnumerable<byte[]> documents);
-        Task<SubscribeWebHookResponse> Post(WebhookSubscription webhookSubscription);
+        Task<SubscribeWebHookResponse> AddSubscription(WebhookSubscription webhookSubscription);
         Task<WebhookPayload> WebHookCheck(WebhookSubscription webhookSubscription);
         Task<IEnumerable<WebhookSubscriptionList>> GetAllWebhookSubscription();
         Task<IEnumerable<SearchWebhookCallLogsResponse>> SearchWebhookCallLogs(string subscriptionId, RequestWebhookSenderLog requestWebhook);
-        Task Put(string subscriptionId, WebhookSubscription webhookSubscription);
+        Task UpdateWebhookSubscription(string subscriptionId, WebhookSubscription webhookSubscription);
         Task DeleteSubscription(string subscriptionId);
 
         //Task<FormSettingsResponse> GetFormSettings(string compnayId, string formId);
