@@ -49,9 +49,9 @@ namespace Doxi.APIClient
         Task<SearchInDocumentResponse> SearchInDocumentBase64(SearchInDocumentBase64Request request);
         Task<SearchInDocumentResponse> SearchInDocument(byte[] file, SearchInDocumentRequest request);
         Task<byte[]> MergeDocuments(IEnumerable<byte[]> documents);
-        Task<SubscribeWebHookResponse> AddSubscription(WebhookSubscription webhookSubscription);
+        Task<AddWebHookSubscriptionResponse> AddSubscription(WebhookSubscription webhookSubscription);
         Task<WebhookPayload> WebHookCheck(WebhookSubscription webhookSubscription);
-        Task<IEnumerable<WebhookSubscriptionList>> GetAllWebhookSubscription();
+        Task<IEnumerable<GetWebhookSubscriptionsResponse>> GetAllWebhookSubscription();
         Task<IEnumerable<SearchWebhookCallLogsResponse>> SearchWebhookCallLogs(string subscriptionId, RequestWebhookSenderLog requestWebhook);
         Task UpdateWebhookSubscription(string subscriptionId, WebhookSubscription webhookSubscription);
         Task DeleteSubscription(string subscriptionId);

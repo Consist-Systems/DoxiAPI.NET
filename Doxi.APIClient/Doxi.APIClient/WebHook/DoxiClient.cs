@@ -10,12 +10,12 @@ namespace Doxi.APIClient
     {
         private const string WEBHOOK_BASE = "webhook";
 
-        public async Task<SubscribeWebHookResponse> AddSubscription(WebhookSubscription webhookSubscription)
+        public async Task<AddWebHookSubscriptionResponse> AddSubscription(WebhookSubscription webhookSubscription)
         {
             return await GetServiceBaseUrl()
                      .AppendPathSegment(WEBHOOK_BASE)
                      .PostJsonAsync(webhookSubscription)
-                     .ReceiveJson<SubscribeWebHookResponse>();
+                     .ReceiveJson<AddWebHookSubscriptionResponse>();
         }
 
         public async Task<WebhookPayload> WebHookCheck(WebhookSubscription webhookSubscription)
@@ -27,11 +27,11 @@ namespace Doxi.APIClient
                 .ReceiveJson<WebhookPayload>();
         }
 
-        public async Task<IEnumerable<WebhookSubscriptionList>> GetAllWebhookSubscription()
+        public async Task<IEnumerable<GetWebhookSubscriptionsResponse>> GetAllWebhookSubscription()
         {
             return await GetServiceBaseUrl()
                  .AppendPathSegment(WEBHOOK_BASE)
-                 .GetJsonAsync<IEnumerable<WebhookSubscriptionList>>();
+                 .GetJsonAsync<IEnumerable<GetWebhookSubscriptionsResponse>>();
         }
 
         public async Task<IEnumerable<SearchWebhookCallLogsResponse>> SearchWebhookCallLogs(string subscriptionId, RequestWebhookSenderLog requestWebhook)
