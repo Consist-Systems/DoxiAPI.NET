@@ -9,9 +9,10 @@ namespace Doxi.APIClient
     {
         private static string GetAccessToken(string url, string realm, string userName, string password) => GetAccessTokenAsync(url, realm, userName, password).GetAwaiter().GetResult();
 
-        internal static IFlurlRequest WithAuthentication(this IFlurlRequest request,string url, string realm, string userName, string password)
+        internal static IFlurlRequest WithAuthentication(this IFlurlRequest request,string url, string realm, string userName, string password,string token)
         {
-            var token = GetAccessToken(url, realm, userName, password);
+            if(token == null)
+                token = GetAccessToken(url, realm, userName, password);
 
             return request.WithOAuthBearerToken(token);
         }
