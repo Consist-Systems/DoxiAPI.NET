@@ -1,6 +1,8 @@
 ﻿using Consist.Doxi.Domain.Models;
 using Consist.Doxi.Domain.Models.ExternalAPI;
+using Doxi.APIClient.Models;
 using Flurl.Http;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -30,6 +32,16 @@ namespace Doxi.APIClient
                     .AddJson("createFlowJsonRequest", createFlowJsonRequest))
                     .ReceiveJson<CreateFlowResponse>();
             }
+        }
+
+        public async Task<string> EditSignFlow(EditFlowRequest editFlowRequest)
+        {
+            return await GetServiceBaseUrl()
+            .AppendPathSegment(FLOW_BASE)
+            .AppendPathSegment("edit")
+            .PostMultipartAsync(mp => mp.AddFile("file", new MemoryStream(editFlowRequest.File.FileBytes), editFlowRequest.File.Name)
+                                         .AddString("senderKey", JsonConvert.SerializeObject(editFlowRequest.SenderKey)))
+            .ReceiveString();
         }
 
         public async Task<byte[]> GetDocument(string signFlowId, bool withSigns = true)

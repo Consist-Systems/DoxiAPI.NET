@@ -1,5 +1,6 @@
 using Consist.Doxi.Domain.Models;
 using Consist.Doxi.Enums;
+using Doxi.APIClient.Models;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace Doxi.APIClient.Tests
         {
             var result = await _doxiClient.GetAllFlows();
         }
+
         [Test]
         public async Task AddAttachmentToFlow_Test()
         {
@@ -50,6 +52,27 @@ namespace Doxi.APIClient.Tests
                     UserAddedTheFile = new ParticipantKey<ParticipantKeyType>()
                     {
                         Key = "doxi_service@metro.co.il",
+                        Type = ParticipantKeyType.UserEmail
+                    }
+                });
+        }
+
+        [Test]
+        public async Task EditFlow_Test()
+        {
+            var pdfFile = File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "emptyPDF.pdf"));
+
+            var result = await _doxiClient.EditSignFlow(
+                new EditFlowRequest()
+                {
+                    File = new FileData
+                    {
+                        FileBytes = pdfFile,
+                        Name = "test.pdf",
+                    },
+                    SenderKey = new ParticipantKey<ParticipantKeyType>()
+                    {
+                        Key = "chenl@consist.co.il",
                         Type = ParticipantKeyType.UserEmail
                     }
                 });

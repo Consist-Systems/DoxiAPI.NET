@@ -2,6 +2,7 @@
 using Consist.Doxi.Domain.Models.ExternalAPI;
 using Consist.Doxi.Domain.WebHooks;
 using Consist.Doxi.Enums;
+using Doxi.APIClient.Models;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -56,5 +57,6 @@ namespace Doxi.APIClient
         Task UpdateWebhookSubscription(string subscriptionId, WebhookSubscription webhookSubscription);
         Task DeleteSubscription(string subscriptionId);
         Task<byte[]> GetFormSettings(string compnayId, string formId);
+        Task<string> EditSignFlow(EditFlowRequest editFlowRequest);
     }
 }
