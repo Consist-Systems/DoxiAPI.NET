@@ -60,5 +60,6 @@ namespace Doxi.APIClient
         Task<string> EditSignFlow(EditFlowRequest editFlowRequest);
 
         Task<string> GetUserIdByEmail(string email);
+        Task<IEnumerable<User>> GetUsers(Dictionary<string, object> queryParams);
     }
 }

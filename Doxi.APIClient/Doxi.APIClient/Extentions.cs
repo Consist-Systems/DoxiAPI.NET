@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using Doxi.APIClient.Models;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Doxi.APIClient
 {
@@ -11,6 +14,15 @@ namespace Doxi.APIClient
                 source.CopyTo(ms);
                 return ms.ToArray();
             }
+        }
+
+        internal static string GetKeycloakAttributeValue(this Dictionary<string, IEnumerable<string>> source,string key)
+        {
+            if (!source.ContainsKey(key))
+                return null;
+
+            return source[key].FirstOrDefault();
+
         }
     }
 }
