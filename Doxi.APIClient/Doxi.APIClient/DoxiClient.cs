@@ -47,6 +47,11 @@ namespace Doxi.APIClient
            .AfterCall(HandleErrors)
            .WithAuthentication(_idpUrl, _companyName, _userName, _password, _token);
 
+        private IFlurlRequest GetIDPServiceBaseUrl() => new Url(_idpUrl)
+           .ConfigureRequest(settings => settings.JsonSerializer = _serializer)
+           .AfterCall(HandleErrors)
+           .WithAuthentication(_idpUrl, _companyName, _userName, _password, _token);
+
         private void HandleErrors(FlurlCall flurlCall)
         {
             if (flurlCall?.Response?.StatusCode != 200)

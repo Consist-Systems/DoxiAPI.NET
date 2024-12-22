@@ -58,5 +58,7 @@ namespace Doxi.APIClient
         Task DeleteSubscription(string subscriptionId);
         Task<byte[]> GetFormSettings(string compnayId, string formId);
         Task<string> EditSignFlow(EditFlowRequest editFlowRequest);
+
+        Task<string> GetUserIdByEmail(string email);
     }
 }

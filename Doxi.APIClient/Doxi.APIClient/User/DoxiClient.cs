@@ -2,6 +2,7 @@
 using Consist.Doxi.Enums;
 using Flurl.Http;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Doxi.APIClient
@@ -30,5 +31,32 @@ namespace Doxi.APIClient
                .GetJsonAsync<GetUserTemplatesResponse[]>();
         }
 
+        public async Task<string> GetUserIdByEmail(string email)
+        {
+            var queryParams = new Dictionary<string, object>
+            {
+                [nameof(email)] = email,
+            };
+            var users = await GetIDPServiceBaseUrl()
+               .AppendPathSegment("auth/admin/realms")
+               .AppendPathSegment(_companyName)
+               .AppendPathSegment("users")
+               .SetQueryParams(queryParams)
+               .GetJsonAsync<IEnumerable<UserId>>()
+               .ConfigureAwait(false);
+
+            if (users == null)
+            {
+                return string.Empty;
+            }
+            var userId = users.First().id;
+            return userId;
+        }
+
+        public class UserId
+        {
+            public string id { get; set; }
+            public string email { get; set; }
+        }
     }
 }
