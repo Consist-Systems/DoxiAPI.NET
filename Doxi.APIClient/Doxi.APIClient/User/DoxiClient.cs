@@ -40,7 +40,7 @@ namespace Doxi.APIClient
                 [nameof(email)] = email,
             };
             var users = await GetIDPServiceBaseUrl()
-               .AppendPathSegment("auth/admin/realms")
+               .AppendPathSegment("admin/realms")
                .AppendPathSegment(_companyName)
                .AppendPathSegment("users")
                .SetQueryParams(queryParams)
@@ -63,7 +63,7 @@ namespace Doxi.APIClient
         public async Task<IEnumerable<User>> GetUsers(Dictionary<string, object> queryParams)
         {
             var users = await GetIDPServiceBaseUrl()
-               .AppendPathSegment("auth/admin/realms")
+               .AppendPathSegment("admin/realms")
                .AppendPathSegment(_companyName)
                .AppendPathSegment("users")
                .SetQueryParams(queryParams)

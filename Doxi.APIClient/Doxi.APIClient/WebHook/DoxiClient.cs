@@ -2,7 +2,7 @@
 using Flurl.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Consist.Doxi.Domain.WebHooks;
+using Consist.Doxi.External.Models.Models.ExternalAPI.Webhook;
 
 namespace Doxi.APIClient
 {

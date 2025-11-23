@@ -1,6 +1,7 @@
 ﻿using Consist.Doxi.Domain.Models;
 using Consist.Doxi.Domain.Models.ExternalAPI;
 using Consist.Doxi.Enums;
+using Consist.Doxi.External.Models.Models.ExternalAPI.Webhook;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using System.Collections;
@@ -32,12 +33,12 @@ namespace Doxi.APIClient.Tests
         [Test]
         public async Task AddSubscription()
         {
-            var result = await _doxiClient.AddSubscription(new Consist.Doxi.Domain.Models.ExternalAPI.WebhookSubscription()
+            var result = await _doxiClient.AddSubscription(new WebhookSubscription()
             {
                 Headers = {},
                 IsActive = true,
                 IsEncryptData = false,
-                WebhookConsumer = new Consist.Doxi.Domain.Models.ExternalAPI.WebhookConsumer()
+                WebhookConsumer = new WebhookConsumer()
                 {
                     Company = "",
                     ContactInfo = "0504134333",
@@ -56,7 +57,7 @@ namespace Doxi.APIClient.Tests
                 Headers = { },
                 IsActive = true,
                 IsEncryptData = false,
-                WebhookConsumer = new Consist.Doxi.Domain.Models.ExternalAPI.WebhookConsumer()
+                WebhookConsumer = new WebhookConsumer()
                 {
                     Company = "",
                     ContactInfo = "0504134333",
@@ -94,7 +95,7 @@ namespace Doxi.APIClient.Tests
                 Headers = { },
                 IsActive = true,
                 IsEncryptData = false,
-                WebhookConsumer = new Consist.Doxi.Domain.Models.ExternalAPI.WebhookConsumer()
+                WebhookConsumer = new WebhookConsumer()
                 {
                     Company = "",
                     ContactInfo = "0504134333",

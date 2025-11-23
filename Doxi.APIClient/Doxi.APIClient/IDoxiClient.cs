@@ -2,6 +2,7 @@
 using Consist.Doxi.Domain.Models.ExternalAPI;
 using Consist.Doxi.Domain.WebHooks;
 using Consist.Doxi.Enums;
+using Consist.Doxi.External.Models.Models.ExternalAPI.Webhook;
 using Doxi.APIClient.Models;
 using Microsoft.AspNetCore.Http;
 using System;

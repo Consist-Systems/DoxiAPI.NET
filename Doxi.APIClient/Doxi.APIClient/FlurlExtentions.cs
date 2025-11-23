@@ -20,7 +20,7 @@ namespace Doxi.APIClient
         public static async Task<string> GetAccessTokenAsync(string url, string realm, string userName, string password)
         {
             var result = await url
-                .AppendPathSegment($"/auth/realms/{realm}/protocol/openid-connect/token")
+                .AppendPathSegment($"/realms/{realm}/protocol/openid-connect/token")
                 .WithHeader("Accept", "application/json")
                 .PostUrlEncodedAsync(new List<KeyValuePair<string, string>>
                 {
